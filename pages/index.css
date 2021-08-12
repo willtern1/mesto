@@ -29,3 +29,146 @@
   background-image: url(../images/logo.png);
   background-size: cover;
 }
+
+.content {
+  width: 68.7%;
+}
+
+.profile {
+  margin-top: 40px;
+  display: flex;
+}
+
+.profile__image {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+}
+
+.profile__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 3.5%
+}
+
+.profile__title {
+  margin: 0;
+  font-family: 'Inter';
+  font-weight: 500;
+  font-style: normal;
+  font-size: 42px;
+  line-height: 48px;
+}
+
+.profile__subtitle {
+  margin: 0;
+  font-family: 'Inter';
+  font-style: normal;
+  font-size: 18px;
+  line-height: 21.78px;
+  margin-top: 10px;
+}
+
+.buttons {
+  width: 49.5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile__edit-button {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 5.5%;
+  margin-left: 4.4%;
+  border: 1px solid white;
+  background-color: black;
+}
+
+.profile__edit-button-icon {
+  width: 10px;
+  height: 10px;
+}
+
+.profile__button {
+  width: 150px;
+  height: 50px;
+  background-color: black;
+  border: 1px solid white;
+}
+
+.profile__button-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.elements {
+  margin-top: 51px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 19px 1.85%;
+}
+
+.element {
+  width: 32.1%;
+  height: 362px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.element__image {
+  border-style: none;
+}
+
+.element__discription {
+  display: inline-flex;
+  padding-top: 26px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.element__text {
+  margin: 0;
+  color: rgba(0, 0, 0, 1);
+  font-family: 'Inter';
+  font-weight: 900;
+  font-style: normal;
+  font-size: 24px;
+  margin-left: 7.5%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.element__button{
+  width: 22px;
+  height: 19px;
+  background-color: white;
+  border: 0px;
+  margin-right: 9.1%;
+}
+
+.element__button-image {
+
+}
+
+.footer {
+  width: 68.7%;
+  display: flex;
+  margin-top: 5.2%;
+}
+
+.footer__copyright {
+  margin: 0;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 21.78px;
+  color: rgba(84, 84, 84, 1);
+  letter-spacing: 0.25px;
+}
