@@ -1,0 +1,7 @@
+.element__discription {
+  display: inline-flex;
+  padding-top: 26px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0% 8%;
+}

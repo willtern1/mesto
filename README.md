@@ -1,6 +1,12 @@
 # Проект: Место
 
+## https://willtern1.github.io/mesto/Index.html
+
 ### Обзор
+
++ Страничка для редактирования профиля.
++ HTML, CSS, JAVASCRIPT.
+
 
 * Figma
 * Картинки

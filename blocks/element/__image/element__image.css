@@ -1,0 +1,11 @@
+.element__image {
+  border-style: none;
+  transition: 1s ease-out;
+  display: block;
+  background-color: black;
+}
+
+.element__image:hover {
+  transition: 1s ease-out;
+  transform: scale(1.1);
+}

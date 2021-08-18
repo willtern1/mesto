@@ -1,365 +1,90 @@
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts/font.css);
-
-.body {
-  background-color:#000000;
-}
-
-.page {
-  max-width: 1280px;
-  min-width: 320px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #000000;
-  margin: auto;
-  font-family: 'Inter', sans-serif;
-  color: white;
-}
-
-.header {
-  width: 68.7%;
-  margin: 45px auto 0px;
-  border-bottom: 1px solid rgba(84, 84, 84, 1);
-  padding-bottom: 40px;
-}
-
-@media screen and (max-width: 540px) {
-  .header {
-    width: 100%;
-    margin: 28px 0px 0px 0px;
-  }
-}
-
-.header__logo {
-  width: 142px;
-  height: 33px;
-  background-image: url(../images/logo.png);
-  background-size: cover;
-  cursor: pointer;
-  transition: 1s linear;
-}
-
-@media screen and (max-width: 540px) {
-  .header__logo {
-    width: 103.74px;
-    height: 24.4px;
-    margin-left: 48px;
-  }
-}
-
-.header__logo:hover {
-  opacity: 0.5;
-  transition: 1s linear;
-  transform: scale(1.1);
-}
-
-.content {
-  width: 68.7%;
-}
-
-.profile {
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: 121px 44.8% 24.4% 17.1%;
-  grid-template-rows: repeat(1, auto);
-  justify-items: center;
-  align-items: center;
-}
-
-.profile__image {
-  grid-area: image;
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  transition: all 1s ease-out;
-  cursor: pointer;
-  grid-row: 1/1;
-  grid-column: 1/2;
-}
-
-.profile__image:hover {
-  transform: scale(1.2);
-}
-
-.profile__info {
-  grid-area: info;
-  gap: 0px 18px;
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  grid-template-rows: repeat(2, auto);
-  grid-template-areas:
-      "name button"
-      "job job";
-  grid-row: 1/1;
-  grid-column: 2/3;
-}
-
-.profile__name {
-  grid-area: name;
-  margin: 0;
-  font-family: 'Inter';
-  font-weight: 500;
-  font-style: normal;
-  font-size: 42px;
-  line-height: 48px;
-}
-
-.profile__job {
-  grid-area: job;
-  margin: 0;
-  font-family: 'Inter';
-  font-style: normal;
-  font-size: 18px;
-  line-height: 21.78px;
-  margin-top: 10px;
-}
-
-.profile__edit-button {
-  grid-area: button;
-  width: 24px;
-  height: 24px;
-  margin-bottom: 25.5%;
-  border: 1px solid white;
-  background-color: black;
-  transition: 1s;
-  cursor: pointer;
-  align-self: end;
-}
-
-.profile__edit-button-icon {
-  width: 10px;
-  height: 10px;
-}
-
-.profile__edit-button:hover {
-  opacity: 0.6;
-  transition: 0.5s;
-  transform: scale(1.1);
-}
-
-.profile__button {
-  grid-area: button;
-  width: 100%;
-  height: 50px;
-  background-color: black;
-  border: 1px solid white;
-  transition: 1s;
-  cursor: pointer;
-  grid-row: 1/2;
-  grid-column: 4/5;
-}
-
-.profile__button-icon {
-  width: 22px;
-  height: 22px;
-}
-
-.profile__button:hover {
-  opacity: 0.6;
-  transition: 0.5s;
-  transform: scale(1.1);
-}
-
-.elements {
-  margin-top: 51px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 19px 1.85%;
-}
-
-.element {
-  width: 32.1%;
-  height: 362px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  background-color: white;
-  overflow: hidden;
-}
-
-.element__image {
-  border-style: none;
-  transition: 1s ease-out;
-  display: block;
-}
-
-.element__image:hover {
-  transition: 1s ease-out;
-  transform: scale(1.1);
-}
-
-.element__discription {
-  display: inline-flex;
-  padding-top: 26px;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0% 8%;
-}
-
-.element__text {
-  margin: 0;
-  color: rgba(0, 0, 0, 1);
-  font-family: 'Inter';
-  font-weight: 900;
-  font-style: normal;
-  font-size: 24px;
-  margin-left: 7.5%;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.element__button{
-  background-image: url(../images/like-button.png);
-  width: 22px;
-  height: 19px;
-  background-color: white;
-  border: 0px;
-  margin-right: 7.1%;
-  padding-left: 5.4%;
-  transition: 1s;
-  cursor: pointer;
-}
-
-.element__button:hover{
-  opacity: 0.6;
-  transition: 0.5s;
-  transform: scale(1.2);
-}
+@import url(../blocks/body/body.css);
+@import url(../blocks/page/page.css);
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
+@import url(../blocks/content/content.css);
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__image/profile__image.css);
+@import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/profile/__job/profile__job.css);
+@import url(../blocks/profile/__edit-button/profile__edit-button.css);
+@import url(../blocks/profile/edit__edit-button-icon/profile__edit-button-icon.css);
+@import url(../blocks/profile/__button/profile__button.css);
+@import url(../blocks/profile/__button-icon/profile__button-icon.css);
+@import url(../blocks/elements/elements.css);
+@import url(../blocks/element/element.css);
+@import url(../blocks/element/__image/element__image.css);
+@import url(../blocks/element/discription/element__discription.css);
+@import url(../blocks/element/__text/element__text.css);
+@import url(../blocks/element/__button/element__button.css);
+@import url(../blocks/element/__button-image/_active/element__button-image_active.css);
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__close-icon/popup__close-icon.css);
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/popup/__button/popup__button.css);
+@import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__input/popup__input.css);
 
 
-.element__button-image_active {
-  background-image: url(../images/like-active.png);
-  cursor: pointer;
-}
 
-.element__button-image_active:hover {
-  opacity: 1;
-}
 
-.footer {
-  width: 68.7%;
-  display: flex;
-  margin-top: 5.2%;
-  padding-bottom: 54px;
-}
 
-.footer__copyright {
-  margin: 0;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 18px;
-  line-height: 21.78px;
-  color: rgba(84, 84, 84, 1);
-  letter-spacing: 0.25px;
-}
 
-.popup{
-  width: 100%;
-  height: 100%;
-  background-color:rgba(0,0,0, .5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: none;
-}
 
-.popup_opened{
-  display: block;
-}
 
-.popup__close-icon{
-  background-image: url(../images/Close-Icon.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: transparent;
-  border: none;
-  width: 32px;
-  height: 32px;
-  transition: opacity .3s linear;
-  padding: 0;
-  margin-bottom: 8px;
-  margin-left: 438px;
-  cursor: pointer;
-}
 
-.popup__close-icon:hover{
-  opacity: 0.6;
-}
 
-.popup__container{
-  margin: 0 auto;
-  position: fixed;
-  left: calc(50vw - 215px);
-  top: calc(50vh - 165px);
-}
 
-.popup__input{
-  width: 358px;
-  height: 27px;
-  box-sizing: border-box;
-  border: 0;
-  border-bottom: 1px solid rgba(0,0,0, .2);
-  background-color: transparent;
-  margin: 0 auto;
-  padding: 0;
-  margin-bottom: 30px;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 17px;
-  padding-bottom: 13px;
-}
-.popup__input:last-of-type{
-  margin-bottom: 48px;
-}
-.popup__input:focus{
-  outline: none;
-}
 
-.popup__title{
-  font-style: normal;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 29px;
-  color: #000000;
-  margin: 0;
-  margin-top: 34px;
-  margin-left: 36px;
-  margin-bottom: 48px;
-}
 
-.popup__form{
-  background-color: #fff;
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-  max-width: 430px;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-}
 
-.popup__button{
-  background-color: #000;
-  border-radius: 2px;
-  width: 358px;
-  height: 50px;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 22px;
-  text-align: center;
-  color: #FFFFFF;
-  border: none;
-  cursor: pointer;
-  box-sizing: border-box;
-  margin: 0 auto;
-  padding: 0;
-  margin-bottom: 37px;
-  transition: opacity .3s linear;
-}
-.popup__button:hover{
-  opacity: 0.8;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

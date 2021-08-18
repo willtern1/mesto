@@ -1,0 +1,14 @@
+.profile__image {
+  grid-area: image;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  transition: all 1s ease-out;
+  cursor: pointer;
+  grid-row: 1/1;
+  grid-column: 1/2;
+}
+
+.profile__image:hover {
+  transform: scale(1.2);
+}
