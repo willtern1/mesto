@@ -2,6 +2,8 @@
   background-image: url(../../../images/like-button.png);
   width: 22px;
   height: 19px;
+  background-position: center;
+  background-repeat: no-repeat;
   background-color: white;
   border: 0px;
   margin-right: 7.1%;
@@ -13,5 +15,4 @@
 .element__button:hover{
   opacity: 0.6;
   transition: 0.5s;
-  transform: scale(1.2);
 }

@@ -1,5 +1,6 @@
-.element__discription {
+.element__description {
   display: inline-flex;
+  padding-bottom: 26px;
   padding-top: 26px;
   justify-content: space-between;
   align-items: center;

@@ -1,6 +1,13 @@
 .profile__button {
+  background-image: url(../../../images/vector.svg);
+  background-size: 22px;
+  background-position: center;
+  background-repeat: no-repeat;
   grid-area: button;
-  width: 100%;
+  border-radius: 2px;
+  padding: 0;
+  justify-self: end;
+  width: 81%;
   height: 50px;
   background-color: black;
   border: 1px solid white;
@@ -12,13 +19,14 @@
 
 @media screen and (max-width: 540px) {
   .profile__button {
+    background-size: 16px;
     width: 88%;
     margin-top: 34px;
+    margin-left: 0;
   }
 }
 
 .profile__button:hover {
   opacity: 0.6;
   transition: 0.5s;
-  transform: scale(1.1);
 }

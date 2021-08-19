@@ -1,7 +1,7 @@
 .profile {
   margin-top: 40px;
   display: grid;
-  grid-template-columns: 121px 44.8% 24.4% 17.1%;
+  grid-template-columns: 121px 44.8%;
   grid-template-rows: repeat(1, auto);
   justify-items: center;
   align-items: center;

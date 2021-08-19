@@ -1,11 +1,15 @@
 .profile__job {
   grid-area: job;
   margin: 0;
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, Helvetica, sans-serif, 'Times New Roman', Times, serif;
   font-style: normal;
   font-size: 18px;
   line-height: 21.78px;
   margin-top: 10px;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 540px) {

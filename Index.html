@@ -25,62 +25,59 @@
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__job">Исследователь океана</p>
-          <button type="button" class="profile__edit-button">
-            <img class="profile__edit-button-icon" src="./images/edit-button.png" alt="Фото ручки">
+          <button aria-label="profile__edit-button" type="button" class="profile__edit-button">
           </button>
         </div>
-          <button type="button" class="profile__button">
-            <img class="profile__button-icon" src="./images/add-button.png" alt="Фото крестика">
-          </button>
+          <button aria-label="profile__button" type="button" class="profile__button"></button>
       </section>
 
       <section aria-label="elements" class="elements">
 
         <article class="element">
-          <img class="element__image" src="./images/Karachaevsk.png" alt="Фото Карачаевск">
-          <div class="element__discription">
-            <p class="element__text">Карачаевск</p>
-            <button type="button" class="element__button"></button>
+          <img class="element__image" src="./images/karachaevsk.png" alt="Фото Карачаевск">
+          <div class="element__description">
+            <h2 class="element__text">Карачаевск</h2>
+            <button aria-label="element__buttton" type="button" class="element__button"></button>
           </div>
         </article>
 
         <article class="element">
-          <img class="element__image" src="./images/GoraElbrus.png" alt="Фото Горы Эльбрус">
-          <div class="element__discription">
-            <p class="element__text">Гора Эльбрус</p>
-            <button type="button" class="element__button"></button>
+          <img class="element__image" src="./images/goraelbrus.png" alt="Фото Горы Эльбрус">
+          <div class="element__description">
+            <h2 class="element__text">Гора Эльбрус</h2>
+            <button aria-label="element__buttton"  type="button" class="element__button"></button>
           </div>
         </article>
 
         <article class="element">
-          <img class="element__image" src="./images/Dombai.png" alt="Фото Домбай">
-          <div class="element__discription">
-            <p class="element__text">Домбай</p>
-            <button type="button" class="element__button"></button>
+          <img class="element__image" src="./images/dombai.png" alt="Фото Домбай">
+          <div class="element__description">
+            <h2 class="element__text">Домбай</h2>
+            <button aria-label="element__buttton"  type="button" class="element__button"></button>
           </div>
         </article>
 
         <article class="element">
-          <img class="element__image" src="./images/GoraElbrus.png" alt="Фото Горы Эльбрус">
-          <div class="element__discription">
-            <p class="element__text">Гора Эльбрус</p>
-            <button type="button" class="element__button"></button>
+          <img class="element__image" src="./images/goraelbrus.png" alt="Фото Горы Эльбрус">
+          <div class="element__description">
+            <h2 class="element__text">Гора Эльбрус</h2>
+            <button aria-label="element__buttton"  type="button" class="element__button"></button>
           </div>
         </article>
 
         <article class="element">
-          <img class="element__image" src="./images/Dombai.png" alt="Фото Домбай">
-          <div class="element__discription">
-            <p class="element__text">Домбай</p>
-            <button type="button" class="element__button"></button>
+          <img class="element__image" src="./images/dombai.png" alt="Фото Домбай">
+          <div class="element__description">
+            <h2 class="element__text">Домбай</h2>
+            <button aria-label="element__buttton"  type="button" class="element__button"></button>
           </div>
         </article>
 
         <article class="element">
-          <img class="element__image" src="./images/Karachaevsk.png" alt="Фото Карачаевск">
-          <div class="element__discription">
-            <p class="element__text">Карачаево-Черкесия</p>
-            <button type="button" class="element__button"></button>
+          <img class="element__image" src="./images/karachaevsk.png" alt="Фото Карачаевск">
+          <div class="element__description">
+            <h2 class="element__text">Карачаево-Черкесия</h2>
+            <button aria-label="element__buttton"  type="button" class="element__button"></button>
           </div>
         </article>
       </section>
@@ -91,11 +88,11 @@
 
     <div class="popup">
       <div class="popup__container">
-        <button class="popup__close-icon" type="reset"></button>
-        <form class="popup__form" name="form">
+        <button class="popup__close-icon" type="button"></button>
+        <form class="popup__form" name="edit-profile-popup">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__input popup__input_element_name" type="text" value="Жак-Ив Кусто" name="name">
-          <input class=" popup__input popup__input_element_job" type="text" value="Исследователь океана" name="job">
+          <input class="popup__input popup__input_element_name" type="text" value="Жак-Ив Кусто" placeholder="Введите имя" name="name" required>
+          <input class=" popup__input popup__input_element_job" type="text" value="Исследователь океана" placeholder="Введите профессию" name="job" required>
           <button class="popup__button" type="submit">Сохранить</button>
         </form>
       </div>

@@ -1,7 +1,7 @@
 .header {
   width: 68.7%;
   margin: 45px auto 0px;
-  border-bottom: 1px solid rgba(84, 84, 84, 1);
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
   padding-bottom: 40px;
 }
 
@@ -9,5 +9,6 @@
   .header {
     width: 100%;
     margin: 28px 0px 0px 0px;
+    padding-bottom: 32px;
   }
 }

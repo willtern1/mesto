@@ -1,6 +1,5 @@
 .element {
   width: 32.1%;
-  height: 362px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;

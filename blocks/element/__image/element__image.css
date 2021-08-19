@@ -1,4 +1,5 @@
 .element__image {
+  object-fit: cover;
   border-style: none;
   transition: 1s ease-out;
   display: block;
@@ -7,5 +8,4 @@
 
 .element__image:hover {
   transition: 1s ease-out;
-  transform: scale(1.1);
 }
