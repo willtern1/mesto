@@ -6,12 +6,7 @@ let nameInput = formElement.querySelector('.popup__input_element_name');
 let jobInput = formElement.querySelector('.popup__input_element_job');
 let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__job');
-let textWarp = document.querySelectorAll('.element__text')[5];
 
-//Добавление стилей для последнего .element__text
-textWarp.setAttribute('style', `text-overflow: ellipsis;
-white-space: nowrap;
-overflow: hidden;`)
 // Закртыие попы на ESC
 //document.addEventListener ('keydown', function(event) {
 //  if(event.key === 'Escape') {

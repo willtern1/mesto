@@ -10,7 +10,7 @@
   width: 81%;
   height: 50px;
   background-color: black;
-  border: 1px solid white;
+  border: 2px solid #FFFFFF;
   transition: 1s;
   cursor: pointer;
   grid-row: 1/2;
