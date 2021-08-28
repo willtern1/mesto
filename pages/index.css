@@ -28,3 +28,132 @@
 @import url(../blocks/popup/__button/popup__button.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__input/popup__input.css);
+
+.popup-places {
+  width: 100%;
+  height: 100%;
+  background-color:rgba(0,0,0, .5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+.popup-paces_opened {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.popup-places__container {
+  background-color: #fff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  max-width: 430px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+@media screen and (max-width: 540px){
+  .popup-places__container {
+    max-width: 282px;
+  }
+}
+
+.popup-places__close-icon {
+  background-image: url(../../../images/closeicon.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+  transition: opacity .3s linear;
+  padding: 0;
+  cursor: pointer;
+  position: absolute;
+  right: -40px;
+  top: -41px;
+}
+
+@media screen and (max-width: 540px){
+  .popup-places__close-icon{
+    width: 20px;
+    height: 20px;
+    right: 0px;
+    top: -32px;
+  }
+}
+
+.popup-places__close-icon:hover{
+  opacity: 0.6;
+}
+
+.popup-places__form {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+@media screen and (max-width: 540px) {
+  .popup-places__form {
+    max-width: 282px;
+  }
+}
+
+.popup-places__title {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+  margin: 0;
+  margin-top: 34px;
+  margin-left: 36px;
+  margin-bottom: 48px;
+}
+
+@media screen and (max-width: 540px) {
+  .popup-places__title {
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0 auto;
+    margin-top: 25px;
+    margin-bottom: 75px;
+  }
+}
+
+.popup-places__button {
+  background-color: #000;
+  border-radius: 2px;
+  width: 358px;
+  height: 50px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0;
+  margin-bottom: 37px;
+  transition: opacity .3s linear;
+}
+
+@media screen and (max-width: 540px) {
+  .popup-places__button {
+    width: 238px;
+    height: 46px;
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 25px;
+  }
+}
+
+.popup-places__button:hover {
+  opacity: 0.8;
+}
