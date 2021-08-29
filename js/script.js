@@ -17,6 +17,10 @@ const placesNameInput = placesFormElement.querySelector('.popup-places__input_el
 const placesLinkInput = placesFormElement.querySelector('.popup-places__input_element_place-link');
 const placesImage = document.querySelector('.element__image');
 const placesDescription = document.querySelector('.element__text');
+const popupImage = document.querySelector('.popup-image');
+const popupImageCloseIcon = document.querySelector('.popup-image__close-icon');
+const popupImagePicture = document.querySelector('.popup-image__picture');
+const popupImageTitle = document.querySelector('.popup-image__title');
 
 const initialCards = [
   {
@@ -62,7 +66,17 @@ const initialCards = [
 const addCard = (card) => {
   const elementCopy = elementTemplate.querySelector('.element').cloneNode(true);
   elementCopy.querySelector('.element__image').src = card.link;
+  elementCopy.querySelector('.element__image').alt = card.name;
   elementCopy.querySelector('.element__text').textContent = card.name;
+  elementCopy.querySelector('.element__button').addEventListener('click', (event) => {event.target.classList.toggle('element__button_active')});
+  elementCopy.querySelector('.element__trash-button').addEventListener('click', (event) => {event.target.closest('.element').remove()});
+  elementCopy.querySelector('.element__image').addEventListener('click', (event) => {
+    popupImage.classList.add('popup-image_active');
+    popupImagePicture.src = elementCopy.querySelector('.element__image').src;
+    popupImagePicture.alt = elementCopy.querySelector('.element__text').textContent;
+    popupImageTitle.textContent = elementCopy.querySelector('.element__text').textContent;
+  });
+  popupImageCloseIcon.addEventListener('click', (event) => {popupImage.classList.remove('popup-image_active')});
   elements.append(elementCopy);
 }
 // вызываем функцию аддкарт для каждого элемента массива
@@ -83,14 +97,15 @@ initialCards.forEach((card) => {
 //      event.stopPropagation();
 //    }
 //  )
-//Функция открытия попы
+
+//Функция открытия попы профиля
 function openPopup(){
   popup.classList.add('popup_opened');
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 }
 
-//Функция закрытия попы
+//Функция закрытия попы профиля
 function closePopup(){
   popup.classList.remove('popup_opened');
 }
@@ -102,28 +117,39 @@ function submitForm (event) {
   profileJob.textContent = jobInput.value;
   closePopup();
 }
-
+//Функция открытия попы плейсес
 function openPlacesPopup(){
   placesPopup.classList.add('popup-paces_opened')
 }
-
+// Функция закрытия попы плейса
 function closePlacesPopup() {
   placesPopup.classList.remove('popup-paces_opened');
+  placesFormElement.reset();
 }
-
+// Функция добавления карточки по кнопке
 function submitPlacesForm (event) {
   event.preventDefault();
   const elementCopy = elementTemplate.querySelector('.element').cloneNode(true);
   elementCopy.querySelector('.element__image').src = placesLinkInput.value;
   elementCopy.querySelector('.element__text').textContent = placesNameInput.value;
+  elementCopy.querySelector('.element__button').addEventListener('click', (event) => {event.target.classList.toggle('element__button_active')});
+  elementCopy.querySelector('.element__trash-button').addEventListener('click', (event) => {event.target.closest('.element').remove()});
+  elementCopy.querySelector('.element__image').addEventListener('click', (event) => {popupImage.classList.add('popup-image_active')});
+  elementCopy.querySelector('.element__image').addEventListener('click', (event) => {
+    popupImage.classList.add('popup-image_active');
+    popupImagePicture.src = elementCopy.querySelector('.element__image').src
+    popupImageTitle.textContent = elementCopy.querySelector('.element__text').textContent;
+  });
+  popupImageCloseIcon.addEventListener('click', (event) => {popupImage.classList.remove('popup-image_active')});
   elements.prepend(elementCopy);
   closePlacesPopup();
+  placesFormElement.reset();
 }
 
 //popup.addEventListener('click', closePopup);// слушатель закрытия попы по фону
 editButton.addEventListener('click', openPopup); //слушатель открытия попы по клику на кнопку
 closeButton.addEventListener('click', closePopup);//слушатель закрытия попы по клику на копку
 formElement.addEventListener('submit', submitForm);//слушатель отправки значений
-placeAddButton.addEventListener('click', openPlacesPopup);
-placesPopupCloseButton.addEventListener('click', closePlacesPopup);
-placeSubmitButton.addEventListener('click', submitPlacesForm);
+placeAddButton.addEventListener('click', openPlacesPopup); // Открытие попы плейсес по кнопке
+placesPopupCloseButton.addEventListener('click', closePlacesPopup);// Закрытие попы плейсес по кнопке
+placeSubmitButton.addEventListener('click', submitPlacesForm);// Отправка инпут значений в хтмл

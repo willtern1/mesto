@@ -36,13 +36,17 @@
   position: fixed;
   top: 0;
   left: 0;
-  display: none;
-}
-
-.popup-paces_opened {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .5s;
+}
+
+.popup-paces_opened {
+  opacity: 1;
+  visibility: visible;
 }
 
 .popup-places__container {
@@ -62,7 +66,7 @@
 }
 
 .popup-places__close-icon {
-  background-image: url(../../../images/closeicon.svg);
+  background-image: url(../images/closeicon.svg);
   background-repeat: no-repeat;
   background-size: contain;
   background-color: transparent;
@@ -121,6 +125,7 @@
     margin: 0 auto;
     margin-top: 25px;
     margin-bottom: 75px;
+    margin-left: 22px;
   }
 }
 
@@ -156,4 +161,101 @@
 
 .popup-places__button:hover {
   opacity: 0.8;
+}
+
+.element__trash-button {
+  background-image: url(../images/Trash.svg);
+  background-color: transparent;
+  width: 18px;
+  align-self: flex-end;
+  height: 19.3px;
+  background-repeat: no-repeat;
+  background-size: 18px;
+  margin-right: 18px;
+  margin-top: 15px;
+  position: absolute;
+  border: 0;
+  background-position: center;
+  cursor: pointer;
+}
+
+.popup-image {
+  align-items: center;
+  background-color: rgba(0, 0, 0, .5);
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  transition: all .5s;
+  visibility: hidden;
+  width: 100%;
+}
+
+.popup-image_active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-image__container {
+  box-shadow: rgb(0 0 0 / 15%) 0px 0px 25px;
+  border-radius: 10px;
+  max-width: 75vw;
+  max-height: 75vh;
+  margin: 0px auto;
+  position: relative;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+}
+
+.popup-image__close-icon {
+  background-image: url(../images/closeicon.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+  transition: opacity .3s linear;
+  padding: 0;
+  cursor: pointer;
+  position: absolute;
+  right: -45px;
+  top: -40px;
+}
+
+@media screen and (max-width: 540px){
+  .popup-image__close-icon {
+    width: 20px;
+    height: 20px;
+    right: 0px;
+    top: -32px;
+  }
+}
+
+.popup-image__form {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.popup-image__picture {
+  object-fit: cover;
+  object-position: center;
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+.popup-image__title {
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 14.52px;
+  color: white;
+  margin: 0;
+  margin-top: 10px;
+
 }
