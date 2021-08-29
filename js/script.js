@@ -65,19 +65,19 @@ const initialCards = [
 // Линейная функция с добавлением карточек из массива в html находится в константе.
 const addCard = (card) => {
   const elementCopy = elementTemplate.querySelector('.element').cloneNode(true);
-  elementCopy.querySelector('.element__image').src = card.link;
-  elementCopy.querySelector('.element__image').alt = card.name;
-  elementCopy.querySelector('.element__text').textContent = card.name;
-  elementCopy.querySelector('.element__button').addEventListener('click', (event) => {event.target.classList.toggle('element__button_active')});
-  elementCopy.querySelector('.element__trash-button').addEventListener('click', (event) => {event.target.closest('.element').remove()});
+  elementCopy.querySelector('.element__image').src = card.link; // Добавление значение link из массива в поле src
+  elementCopy.querySelector('.element__image').alt = card.name; // Добавление значения name в поле alt
+  elementCopy.querySelector('.element__text').textContent = card.name; // Добавление значение из массива в текст элемента
+  elementCopy.querySelector('.element__button').addEventListener('click', (event) => {event.target.classList.toggle('element__button_active')}); // Добавление кнопки лайка со слушателем, которая меняет классы
+  elementCopy.querySelector('.element__trash-button').addEventListener('click', (event) => {event.target.closest('.element').remove()}); // Кнопка удаления у карточек
   elementCopy.querySelector('.element__image').addEventListener('click', (event) => {
-    popupImage.classList.add('popup-image_active');
+    popupImage.classList.add('popup-image_active'); // открытие попы с картинкой
     popupImagePicture.src = elementCopy.querySelector('.element__image').src;
-    popupImagePicture.alt = elementCopy.querySelector('.element__text').textContent;
+    popupImagePicture.alt = elementCopy.querySelector('.element__text').textContent;                  // Добевление картинки, её альта и название в поп ап
     popupImageTitle.textContent = elementCopy.querySelector('.element__text').textContent;
   });
-  popupImageCloseIcon.addEventListener('click', (event) => {popupImage.classList.remove('popup-image_active')});
-  elements.append(elementCopy);
+  popupImageCloseIcon.addEventListener('click', (event) => {popupImage.classList.remove('popup-image_active')}); // лиснер для кнопки закрытия попы с картинкой
+  elements.append(elementCopy); // добавления эелема вначало
 }
 // вызываем функцию аддкарт для каждого элемента массива
 initialCards.forEach((card) => {
@@ -128,22 +128,21 @@ function closePlacesPopup() {
 }
 // Функция добавления карточки по кнопке
 function submitPlacesForm (event) {
-  event.preventDefault();
-  const elementCopy = elementTemplate.querySelector('.element').cloneNode(true);
-  elementCopy.querySelector('.element__image').src = placesLinkInput.value;
-  elementCopy.querySelector('.element__text').textContent = placesNameInput.value;
-  elementCopy.querySelector('.element__button').addEventListener('click', (event) => {event.target.classList.toggle('element__button_active')});
-  elementCopy.querySelector('.element__trash-button').addEventListener('click', (event) => {event.target.closest('.element').remove()});
-  elementCopy.querySelector('.element__image').addEventListener('click', (event) => {popupImage.classList.add('popup-image_active')});
+  event.preventDefault(); // выключения стандартного действи браузера
+  const elementCopy = elementTemplate.querySelector('.element').cloneNode(true) // клон узла html темплейт;
+  elementCopy.querySelector('.element__image').src = placesLinkInput.value;  // добавление значения из нипута в src
+  elementCopy.querySelector('.element__text').textContent = placesNameInput.value;  // добавление значения из нипута в text
+  elementCopy.querySelector('.element__button').addEventListener('click', (event) => {event.target.classList.toggle('element__button_active')}); // кнопка лайка
+  elementCopy.querySelector('.element__trash-button').addEventListener('click', (event) => {event.target.closest('.element').remove()}); // кнопка удаления краточки
   elementCopy.querySelector('.element__image').addEventListener('click', (event) => {
-    popupImage.classList.add('popup-image_active');
-    popupImagePicture.src = elementCopy.querySelector('.element__image').src
-    popupImageTitle.textContent = elementCopy.querySelector('.element__text').textContent;
+    popupImage.classList.add('popup-image_active'); // открытие попы с картинкой
+    popupImagePicture.src = elementCopy.querySelector('.element__image').src // вставка в попап значения из html
+    popupImageTitle.textContent = elementCopy.querySelector('.element__text').textContent;  // вставка в попап значения из html
   });
-  popupImageCloseIcon.addEventListener('click', (event) => {popupImage.classList.remove('popup-image_active')});
-  elements.prepend(elementCopy);
-  closePlacesPopup();
-  placesFormElement.reset();
+  popupImageCloseIcon.addEventListener('click', (event) => {popupImage.classList.remove('popup-image_active')}); // закрытия попы
+  elements.prepend(elementCopy); // Отправка вначало блока
+  closePlacesPopup(); // функция закрытия попы
+  placesFormElement.reset(); // сброс формы ну... инпутов
 }
 
 //popup.addEventListener('click', closePopup);// слушатель закрытия попы по фону

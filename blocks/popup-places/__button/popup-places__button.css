@@ -1,0 +1,33 @@
+.popup-places__button {
+  background-color: #000;
+  border-radius: 2px;
+  width: 358px;
+  height: 50px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0;
+  margin-bottom: 37px;
+  transition: opacity .3s linear;
+}
+
+@media screen and (max-width: 540px) {
+  .popup-places__button {
+    width: 238px;
+    height: 46px;
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 25px;
+  }
+}
+
+.popup-places__button:hover {
+  opacity: 0.8;
+}
