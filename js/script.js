@@ -131,6 +131,7 @@ function submitPlacesForm (event) {
   event.preventDefault(); // выключения стандартного действи браузера
   const elementCopy = elementTemplate.querySelector('.element').cloneNode(true) // клон узла html темплейт;
   elementCopy.querySelector('.element__image').src = placesLinkInput.value;  // добавление значения из нипута в src
+  elementCopy.querySelector('.element__image').alt = placesNameInput.value;
   elementCopy.querySelector('.element__text').textContent = placesNameInput.value;  // добавление значения из нипута в text
   elementCopy.querySelector('.element__button').addEventListener('click', (event) => {event.target.classList.toggle('element__button_active')}); // кнопка лайка
   elementCopy.querySelector('.element__trash-button').addEventListener('click', (event) => {event.target.closest('.element').remove()}); // кнопка удаления краточки
