@@ -12,18 +12,18 @@ const elements = document.querySelector('.elements');
 const element = document.querySelector('.element');
 const elementTemplate = document.querySelector('#template-element').content;
 const addCardButton = document.querySelector('.profile__add-card-button');
-const cardPopupCloseButton = document.querySelector('.pupup__close-icon_type_add-place');
-const cardPopup = document.querySelector('.pupup_type_add-place');
-const cardSubmitButton = document.querySelector('.pupup__button_type_add-place');
-const cardInputName = document.querySelector('.pupup__input_type_add-place-name');
-const cardInputLink = document.querySelector('.pupup__input_type_add-place-link');
-const cardPopupForm = document.querySelector('.pupup__form_type_add-place');
+const cardPopupCloseButton = document.querySelector('.pupup__close-icon_add-place');
+const cardPopup = document.querySelector('.pupup__add-place');
+const cardSubmitButton = document.querySelector('.pupup__button_add-place');
+const cardInputName = document.querySelector('.pupup__input_add-place-name');
+const cardInputLink = document.querySelector('.pupup__input_add-place-link');
+const cardPopupForm = document.querySelector('.pupup__form_add-place');
 const imagePopup = document.querySelector('.popup_type_image');
 const imagePopupCloseIcon = document.querySelector('.popup__close-icon_type_image');
 const placesImage = document.querySelector('.element__image');
 const placesDescription = document.querySelector('.element__text');
-const popupImagePicture = document.querySelector('.popup__picture_type_image');
-const popupImageTitle = document.querySelector('.popup__title_type_image');
+const popupImagePicture = document.querySelector('.popup__picture-image');
+const popupImageTitle = document.querySelector('.popup__title-image');
 
 
 
