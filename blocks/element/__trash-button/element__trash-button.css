@@ -13,3 +13,7 @@
   background-position: center;
   cursor: pointer;
 }
+
+.element__trash-button:hover{
+  opacity: 0.6;
+}
