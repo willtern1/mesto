@@ -28,7 +28,7 @@
           <button aria-label="profile__edit-button" type="button" class="profile__edit-button">
           </button>
         </div>
-          <button aria-label="profile__button" type="button" class="profile__button"></button>
+          <button aria-label="profile__add-card-button" type="button" class="profile__add-card-button"></button>
       </section>
 
       <section aria-label="elements" class="elements">
@@ -39,36 +39,36 @@
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
-      <div class="popup__container">
-        <button class="popup__close-icon" type="button"></button>
-        <form class="popup__form" name="edit-profile-popup">
-          <h2 class="popup__title">Редактировать профиль</h2>
+    <div class="popup popup_type_edit-profile">
+      <div class="popup__container popup__container_type_edit-profile">
+        <button class="popup__close-icon popup__close-icon_type_edit-profile" type="button"></button>
+        <form class="popup__form popup__form_type_edit-profile" name="edit-profile-popup">
+          <h2 class="popup__title popup__title_type_edit-profile">Редактировать профиль</h2>
           <input class="popup__input popup__input_element_name" type="text" value="Жак-Ив Кусто" placeholder="Введите имя" name="name" required>
           <input class=" popup__input popup__input_element_job" type="text" value="Исследователь океана" placeholder="Введите профессию" name="job" required>
-          <button class="popup__button" type="submit">Сохранить</button>
+          <button class="popup__button popup__button_type_edit-profile" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
 
-    <div class="popup-places">
-      <div class="popup-places__container">
-        <button class="popup-places__close-icon" type="button"></button>
-        <form class="popup-places__form" name="popup-places__form">
-          <h2 class="popup-places__title">Новое место</h2>
-          <input class="popup-places__input popup-places__input_element-place-name" type="text" value="" placeholder="Название" name="name" required>
-          <input class="popup-places__input popup-places__input_element-place-link" type="text" value="" placeholder="Ссылка на картинку" name="link" required>
-          <button class="popup-places__button" type="submit">Сохранить</button>
+    <div class="popup pupup_type_add-place">
+      <div class="popup__container pupup__container_type_add-place">
+        <button class="popup__close-icon pupup__close-icon_type_add-place" type="button"></button>
+        <form class="popup__form pupup__form_type_add-place" name="add-place-form">
+          <h2 class="popup__title pupup__title_type_add-place">Новое место</h2>
+          <input class="popup__input pupup__input_type_add-place-name" type="text" value="" placeholder="Название" name="name" required>
+          <input class=" popup__input pupup__input_type_add-place-link" type="text" value="" placeholder="Ссылка на картинку" name="link" required>
+          <button class="popup__button pupup__button_type_add-place" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
 
-    <div class="popup-image">
-      <div class="popup-image__container">
-        <button class="popup-image__close-icon" type="button"></button>
-        <form class="popup-image__form" name="popup-image__form">
-          <img class="popup-image__picture" src="#" alt="">
-          <h2 class="popup-image__title"></h2>
+    <div class="popup popup_type_image">
+      <div class="popup__container popup__container_type_image">
+        <button class="popup__close-icon popup__close-icon_type_image" type="button"></button>
+        <form class="popup__form popup__form_type_image" name="edit-profile-popup">
+          <img class="popup__picture_type_image" src="#" alt="#">
+          <h2 class="popup__title_type_image"></h2>
         </form>
       </div>
     </div>
@@ -87,6 +87,6 @@
 
   </template>
 
-<script src="./js/script.js"></script>
+<script src="./scripts/script.js"></script>
 </body>
 </html>
