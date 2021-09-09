@@ -22,6 +22,7 @@ const placesImage = document.querySelector('.element__image');
 const placesDescription = document.querySelector('.element__text');
 const popupImagePicture = document.querySelector('.popup__picture-image');
 const popupImageTitle = document.querySelector('.popup__title-image');
+const imagePopupForm = document.querySelector('.popup__form_type_image');
 
 
 
@@ -84,7 +85,7 @@ function createCard(card) {
 };
 
 function addCard(card) {
-  const elementCopy = createCard(card); // пихаем фкнкцию рендера в константу и вначала блока эелементс
+  const elementCopy = createCard(card); // пихаем фкнкцию создания карточки в константу и вначала блока эелементс
   elements.prepend(elementCopy);
 }
 
@@ -104,19 +105,6 @@ const submitNewCardForm = (event) => {
   cardPopupForm.reset();
   closePopup(cardPopup);
 };
-
-// Закртыие попы на ESC
-//document.addEventListener ('keydown', function(event) {
-//  if(event.key === 'Escape') {
-//    popup.classList.remove('popup_opened');
-//  }
-//})
-//Закрытие попы по клику фона
-//  document.querySelector('.popup__container').addEventListener(
-//    'click', function (event) {
-//      event.stopPropagation();
-//    }
-//  )
 
 //Функция открытия попы
 function openPopup(event) {
@@ -142,3 +130,27 @@ addCardButton.addEventListener('click', () => {openPopup(cardPopup);});
 cardPopupCloseButton.addEventListener('click', () => {closePopup(cardPopup);});
 cardSubmitButton.addEventListener('click', submitNewCardForm);
 imagePopupCloseIcon.addEventListener('click', () => {closePopup(imagePopup);});
+
+// Закрытие поп по Escape
+document.addEventListener('keydown', (evt) => {
+  if (evt.key === 'Escape') {
+    closePopup(profilePopup);
+    closePopup(cardPopup);
+    closePopup(imagePopup);
+  }
+});
+//Закрытие попы профиль по оверлею
+profilePopup.addEventListener('click', () => {closePopup(profilePopup);})
+profileFormElement.addEventListener('click', function (event){
+  event.stopPropagation();
+})
+//Закрытие попы карточек по оверлею
+cardPopup.addEventListener('click', () => {closePopup(cardPopup);})
+cardPopupForm.addEventListener('click', function (event){
+  event.stopPropagation();
+})
+//Закрытие попы с картинкой по оферлею
+imagePopup.addEventListener('click', () => {closePopup(imagePopup);})
+imagePopupForm.addEventListener('click', function (event){
+  event.stopPropagation();
+})
