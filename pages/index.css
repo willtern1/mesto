@@ -33,3 +33,7 @@
 @import url(../blocks/popup/__container/_type/_image/popup__container_type_image.css);
 @import url(../blocks/popup/__picture/_type/_image/popup__picture_type_image.css);
 @import url(../blocks/popup/__title/_type/_image/popup__title_type_image.css);
+@import url(../blocks/popup/__button/_ivalid/popup__button_invalid.css);
+@import url(../blocks/popup/__error/error.css);
+@import url(../blocks/popup/__error/_visible/popup__error_visible.css);
+@import url(../blocks/popup/__input/_type/popup__input_type_error.css);
