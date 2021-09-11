@@ -24,8 +24,6 @@ const popupImagePicture = document.querySelector('.popup__picture-image');
 const popupImageTitle = document.querySelector('.popup__title-image');
 const imagePopupForm = document.querySelector('.popup__form_type_image');
 
-
-
 const initialCards = [
   {
     name: 'Архыз',
@@ -103,18 +101,54 @@ const submitNewCardForm = (event) => {
       link: cardInputLink.value
   });
   cardPopupForm.reset();
+  cardSubmitButton.classList.add('popup__button_invalid');
+  cardSubmitButton.setAttribute("disabled", "true");
   closePopup(cardPopup);
 };
+// Закрытие поп по Escape
+const closePopupEsc = () => {
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      const popuplist = document.querySelectorAll('.popup')
+      popuplist.forEach((evt) => {
+        evt.classList.remove('popup_opened');
+      })
+    };
+})};
+
+//Закрытие попы по оверлею и кретику
+const closePopupOverlay = () => {
+  document.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-icon')) {
+      const popuplist = document.querySelectorAll('.popup')
+      popuplist.forEach((evt)=>{
+        evt.classList.remove('popup_opened');
+      })
+    }
+  });
+}
+//Првоерка полей инпута профайла и вставка значений из html
+const checkInputValue = () => {
+  profileNameInput.value = profileName.textContent;
+  profileJobInput.value = profileJob.textContent;
+  if (!profileNameInput.length > 0 && !profileJobInput.length > 0) {
+    profilePopupSubmitButton.classList.remove('popup__button_invalid');
+    profilePopupSubmitButton.removeAttribute("disabled", "true");
+  }
+}
 
 //Функция открытия попы
 function openPopup(event) {
   event.classList.add('popup_opened');
-}
+  closePopupEsc(event);
+  closePopupOverlay(event);
+  checkInputValue(event)
+};
 
 //Функция закрытия попы
 function closePopup(event){
   event.classList.remove('popup_opened');
-}
+};
 
 //Функция сохранения и отправки значений в профиль
 function submitProfileForm (event) {
@@ -123,34 +157,8 @@ function submitProfileForm (event) {
   profileJob.textContent = profileJobInput.value;
   closePopup(profilePopup);
 }
-editButton.addEventListener('click', () => {openPopup(profilePopup);});
-closeEditButton.addEventListener('click', () => {closePopup(profilePopup);})
-profilePopupSubmitButton.addEventListener('click', submitProfileForm);
-addCardButton.addEventListener('click', () => {openPopup(cardPopup);});
-cardPopupCloseButton.addEventListener('click', () => {closePopup(cardPopup);});
-cardSubmitButton.addEventListener('click', submitNewCardForm);
-imagePopupCloseIcon.addEventListener('click', () => {closePopup(imagePopup);});
-
-// Закрытие поп по Escape
-document.addEventListener('keydown', (evt) => {
-  if (evt.key === 'Escape') {
-    closePopup(profilePopup);
-    closePopup(cardPopup);
-    closePopup(imagePopup);
-  }
-});
-//Закрытие попы профиль по оверлею
-profilePopup.addEventListener('click', () => {closePopup(profilePopup);})
-profileFormElement.addEventListener('click', function (event){
-  event.stopPropagation();
-})
-//Закрытие попы карточек по оверлею
-cardPopup.addEventListener('click', () => {closePopup(cardPopup);})
-cardPopupForm.addEventListener('click', function (event){
-  event.stopPropagation();
-})
-//Закрытие попы с картинкой по оферлею
-imagePopup.addEventListener('click', () => {closePopup(imagePopup);})
-imagePopupForm.addEventListener('click', function (event){
-  event.stopPropagation();
-})
+//Лиснеры на кнопки
+editButton.addEventListener('click', () => openPopup(profilePopup));
+profileFormElement.addEventListener('submit', submitProfileForm);
+addCardButton.addEventListener('click', () => openPopup(cardPopup));
+cardPopupForm.addEventListener('submit', submitNewCardForm);
