@@ -128,7 +128,7 @@ const closePopupOverlay = () => {
   });
 }
 //Првоерка полей инпута профайла и вставка значений из html
-const checkInputValue = () => {
+const checkProfileInputValue = () => {
   profileNameInput.value = profileName.textContent;
   profileJobInput.value = profileJob.textContent;
   if (!profileNameInput.length > 0 && !profileJobInput.length > 0) {
@@ -142,7 +142,7 @@ function openPopup(event) {
   event.classList.add('popup_opened');
   closePopupEsc(event);
   closePopupOverlay(event);
-  checkInputValue(event)
+  checkProfileInputValue(event)
 };
 
 //Функция закрытия попы
