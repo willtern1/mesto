@@ -142,12 +142,15 @@ function openPopup(event) {
   event.classList.add('popup_opened');
   closePopupEsc(event);
   closePopupOverlay(event);
-  checkProfileInputValue(event)
+  checkProfileInputValue(event);
 };
 
 //Функция закрытия попы
 function closePopup(event){
   event.classList.remove('popup_opened');
+  document.removeEventListener('click', closePopupOverlay);
+  document.removeEventListener('keydown', closePopupEsc);
+
 };
 
 //Функция сохранения и отправки значений в профиль
