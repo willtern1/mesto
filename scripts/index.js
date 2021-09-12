@@ -127,25 +127,6 @@ const closePopupOverlay = () => {
     }
   });
 }
-//удаление Листеноров
-const removeListener = () => {
-  document.removeEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      const popuplist = document.querySelectorAll('.popup')
-      popuplist.forEach((evt) => {
-        evt.classList.remove('popup_opened');
-      })
-    };
-});
-  document.removeEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-icon')) {
-    const popuplist = document.querySelectorAll('.popup')
-    popuplist.forEach((evt)=>{
-      evt.classList.remove('popup_opened');
-    })
-  }
-});
-}
 
 //Првоерка полей инпута профайла и вставка значений из html
 const checkProfileInputValue = () => {
@@ -168,7 +149,8 @@ function openPopup(event) {
 //Функция закрытия попы
 function closePopup(event){
   event.classList.remove('popup_opened');
-  removeListener();
+  document.removeEventListener('click', closePopupOverlay);
+  document.removeEventListener('keydow', closePopupEsc);
 };
 
 //Функция сохранения и отправки значений в профиль
