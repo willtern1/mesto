@@ -105,52 +105,35 @@ const submitNewCardForm = (event) => {
   cardSubmitButton.setAttribute("disabled", "true");
   closePopup(cardPopup);
 };
+
 // Закрытие поп по Escape
-const closePopupEsc = () => {
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      const popuplist = document.querySelectorAll('.popup')
-      popuplist.forEach((evt) => {
-        evt.classList.remove('popup_opened');
-      })
-    };
-})};
+function closePopupEsc(evt){
+  if (evt.key === "Escape") {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+};
 
 //Закрытие попы по оверлею и кретику
-const closePopupOverlay = () => {
-  document.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-icon')) {
-      const popuplist = document.querySelectorAll('.popup')
-      popuplist.forEach((evt)=>{
-        evt.classList.remove('popup_opened');
-      })
-    }
-  });
-}
-
-//Првоерка полей инпута профайла и вставка значений из html
-const checkProfileInputValue = () => {
-  profileNameInput.value = profileName.textContent;
-  profileJobInput.value = profileJob.textContent;
-  if (!profileNameInput.length > 0 && !profileJobInput.length > 0) {
-    profilePopupSubmitButton.classList.remove('popup__button_invalid');
-    profilePopupSubmitButton.removeAttribute("disabled", "true");
+function closePopupOver(evt){
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-icon')) {
+    closePopup(document.querySelector('.popup_opened'));
   }
-}
+};
 
 //Функция открытия попы
 function openPopup(event) {
   event.classList.add('popup_opened');
-  closePopupEsc(event);
-  closePopupOverlay(event);
-  checkProfileInputValue(event);
+  profileNameInput.value = profileName.textContent;
+  profileJobInput.value = profileJob.textContent;
+  document.addEventListener('keydown', closePopupEsc);
+  document.addEventListener('click', closePopupOver)
 };
 
 //Функция закрытия попы
 function closePopup(event){
   event.classList.remove('popup_opened');
-  document.removeEventListener('click', closePopupOverlay);
-  document.removeEventListener('keydow', closePopupEsc);
+  document.removeEventListener('keydown', closePopupEsc);
+  document.removeEventListener('click', closePopupOver);
 };
 
 //Функция сохранения и отправки значений в профиль
@@ -165,3 +148,4 @@ editButton.addEventListener('click', () => openPopup(profilePopup));
 profileFormElement.addEventListener('submit', submitProfileForm);
 addCardButton.addEventListener('click', () => openPopup(cardPopup));
 cardPopupForm.addEventListener('submit', submitNewCardForm);
+
