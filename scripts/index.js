@@ -1,8 +1,6 @@
 const editButton = document.querySelector('.profile__edit-button');
-const closeEditButton = document.querySelector('.popup__close-icon_type_edit-profile');
 const profilePopup = document.querySelector('.popup_type_edit-profile');
 const profileFormElement = document.querySelector('.popup__form_type_edit-profile');
-const profilePopupSubmitButton = document.querySelector('.popup__button_type_edit-profile');
 const profileNameInput = profileFormElement.querySelector('.popup__input_element_name');
 const profileJobInput = profileFormElement.querySelector('.popup__input_element_job');
 const profileName = document.querySelector('.profile__name');
@@ -10,19 +8,14 @@ const profileJob = document.querySelector('.profile__job');
 const elements = document.querySelector('.elements');
 const elementTemplate = document.querySelector('#template-element').content;
 const addCardButton = document.querySelector('.profile__add-card-button');
-const cardPopupCloseButton = document.querySelector('.popup__close-icon_type_add-place');
 const cardPopup = document.querySelector('.popup_type_add-place');
 const cardSubmitButton = document.querySelector('.popup__button_type_add-place');
 const cardInputName = document.querySelector('.popup__input_element_title');
 const cardInputLink = document.querySelector('.popup__input_element_link');
 const cardPopupForm = document.querySelector('.popup__form_type_add-place');
 const imagePopup = document.querySelector('.popup_type_image');
-const imagePopupCloseIcon = document.querySelector('.popup__close-icon_type_image');
-const placesImage = document.querySelector('.element__image');
-const placesDescription = document.querySelector('.element__text');
 const popupImagePicture = document.querySelector('.popup__picture-image');
 const popupImageTitle = document.querySelector('.popup__title-image');
-const imagePopupForm = document.querySelector('.popup__form_type_image');
 
 const initialCards = [
   {
@@ -80,7 +73,7 @@ function createCard(card) {
     popupImagePicture.alt = card.name;               // Добевление картинки, её альта и название в поп ап
     popupImageTitle.textContent = card.name;});
   return elementCopy;
-};
+}
 
 function addCard(card) {
   const elementCopy = createCard(card); // пихаем фкнкцию создания карточки в константу и вначала блока эелементс
@@ -111,28 +104,28 @@ function closePopupEsc(evt){
   if (evt.key === "Escape") {
     closePopup(document.querySelector('.popup_opened'));
   }
-};
+}
 
 //Закрытие попы по оверлею и кретику
 function closePopupOver(evt){
   if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-icon')) {
     closePopup(document.querySelector('.popup_opened'));
   }
-};
+}
 
 //Функция открытия попы
 function openPopup(event) {
   event.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
   document.addEventListener('click', closePopupOver)
-};
+}
 
 //Функция закрытия попы
 function closePopup(event){
   event.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupEsc);
   document.removeEventListener('click', closePopupOver);
-};
+}
 
 //Функция сохранения и отправки значений в профиль
 function submitProfileForm (event) {
