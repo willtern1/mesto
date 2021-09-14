@@ -123,8 +123,6 @@ function closePopupOver(evt){
 //Функция открытия попы
 function openPopup(event) {
   event.classList.add('popup_opened');
-  profileNameInput.value = profileName.textContent;
-  profileJobInput.value = profileJob.textContent;
   document.addEventListener('keydown', closePopupEsc);
   document.addEventListener('click', closePopupOver)
 };
@@ -144,8 +142,10 @@ function submitProfileForm (event) {
   closePopup(profilePopup);
 }
 //Лиснеры на кнопки
-editButton.addEventListener('click', () => openPopup(profilePopup));
+editButton.addEventListener('click', () => {
+  profileNameInput.value = profileName.textContent;
+  profileJobInput.value = profileJob.textContent;
+  openPopup(profilePopup)});
 profileFormElement.addEventListener('submit', submitProfileForm);
 addCardButton.addEventListener('click', () => openPopup(cardPopup));
 cardPopupForm.addEventListener('submit', submitNewCardForm);
-
