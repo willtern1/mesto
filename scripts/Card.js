@@ -1,41 +1,32 @@
+import {imagePopup, popupImagePicture, popupImageTitle, openPopup} from './index.js';
+
 const initialCards = [
   {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    name: 'Враг',
+    link: 'https://i.yapx.ru/OUGUQ.jpg'
   },
   {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    name: 'Пленницы',
+    link: 'https://i.yapx.ru/OUGUT.jpg'
   },
   {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    name: 'Убийца',
+    link: 'https://i.yapx.ru/OUGUW.jpg'
   },
   {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    name: 'Прибытие',
+    link: 'https://i.yapx.ru/OUGUd.png'
   },
   {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    name: 'Бегущий по лезвию 2049',
+    link: 'https://i.yapx.ru/OUGRZ.png'
   },
   {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    name: 'Дюна',
+    link: 'https://i.yapx.ru/OUGUZ.jpg'
   },
-  {
-    name: 'Мейн-кун',
-    link: 'https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
-  },
-  {
-    name: 'Сибирская',
-    link: 'https://images.unsplash.com/photo-1536590158209-e9d615d525e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
-  },
-  {
-    name: 'Хаски',
-    link: 'https://images.unsplash.com/photo-1543556153-5e59781a98dc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=635&q=80'
-  }
 ];
+
 
 class Card {
   constructor(data, elementTemplate) {
@@ -49,7 +40,6 @@ class Card {
       .querySelector(this._elementTemplate)
       .content
       .cloneNode(true);
-
     // вернём DOM-элемент карточки
     return cardElement;
   }
@@ -68,16 +58,22 @@ class Card {
     return this._element;
   }
   _setEventListeners() {
-    this._element.querySelector('.element__button').addEventListener('click', () => {
-      this._likeClick();
-    });
+    this._element.querySelector('.element__button').addEventListener('click', this._likeClick);
+    this._element.querySelector('.element__trash-button').addEventListener('click', this._deleteCard);
+    this._element.querySelector('.element__image').addEventListener('click', this._popupImage);
   }
-  _likeClick() {
-    this._element.querySelector('.element__button').addEventListener('click', () => {
-      this._element.querySelector('.element__button').classList.toggle('element__button_active');
-    });
+  _likeClick(evt) {
+    evt.target.classList.toggle('element__button_active');
   }
-
+  _deleteCard(evt) {
+    evt.target.closest('.element').remove();
+  }
+  _popupImage = () => {
+    openPopup(imagePopup);
+    popupImagePicture.src = this._link;
+    popupImageTitle.textContent = this._name;
+    popupImagePicture.alt = this._name;
+  }
 }
 
 initialCards.forEach((card) => {

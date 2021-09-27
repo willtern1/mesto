@@ -8,9 +8,19 @@ const profileJob = document.querySelector('.profile__job');
 document.querySelector('#template-element').content;
 const addCardButton = document.querySelector('.profile__add-card-button');
 const cardPopup = document.querySelector('.popup_type_add-place');
-document.querySelector('.popup_type_image');
-document.querySelector('.popup__picture-image');
-document.querySelector('.popup__title-image');
+export const imagePopup = document.querySelector('.popup_type_image');
+export const popupImagePicture = document.querySelector('.popup__picture-image');
+export const popupImageTitle = document.querySelector('.popup__title-image');
+const validitySelectorList =({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_invalid',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+});
+import {FormValidator} from './FormValidator.js'
+
 // Закрытие поп по Escape
 function closePopupEsc(evt){
   if (evt.key === "Escape") {
@@ -26,7 +36,7 @@ function closePopupOver(evt){
 }
 
 //Функция открытия попы
-function openPopup(event) {
+export function openPopup(event) {
   event.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
   document.addEventListener('click', closePopupOver)
@@ -42,6 +52,7 @@ function closePopup(event){
 //Функция сохранения и отправки значений в профиль
 function submitProfileForm (event) {
   event.preventDefault();
+
   profileName.textContent = profileNameInput.value;
   profileJob.textContent = profileJobInput.value;
   closePopup(profilePopup);
@@ -50,6 +61,8 @@ function submitProfileForm (event) {
 editButton.addEventListener('click', () => {
   profileNameInput.value = profileName.textContent;
   profileJobInput.value = profileJob.textContent;
+  let profileValidate = new FormValidator(validitySelectorList, profileFormElement );
+  profileValidate.enableValidation()
   openPopup(profilePopup)});
 profileFormElement.addEventListener('submit', submitProfileForm);
 addCardButton.addEventListener('click', () => openPopup(cardPopup));
