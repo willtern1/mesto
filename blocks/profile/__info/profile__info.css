@@ -1,6 +1,6 @@
 .profile__info {
   grid-area: info;
-  gap: 0px 18px;
+  gap: 0 18px;
   display: grid;
   grid-template-columns: repeat(2, auto);
   grid-template-rows: repeat(2, auto);
@@ -9,11 +9,12 @@
       "job job";
   grid-row: 1/1;
   grid-column: 2/3;
+  margin-left: 2%;
 }
 
 @media screen and (max-width: 540px) {
   .profile__info {
-    gap: 0px 10px;
+    gap: 0 10px;
     margin-top: 27px;
     margin-left: 28px;
   }

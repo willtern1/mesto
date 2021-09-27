@@ -11,4 +11,8 @@
   max-width: 100%;
   overflow: hidden;
   white-space: nowrap;
+  background: linear-gradient(
+    1deg, rgb(0 0 0), rgb(118 106 143), rgb(0, 0, 0));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
