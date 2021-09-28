@@ -2,7 +2,7 @@
   background-image: url(../../../images/closeicon.svg);
   background-repeat: no-repeat;
   background-size: contain;
-  background-color: transparent;
+  background-color: rgb(155 0 255 / 50%);
   border: none;
   width: 32px;
   height: 32px;
@@ -12,6 +12,7 @@
   position: absolute;
   right: -40px;
   top: -41px;
+  box-shadow: 0px 0px 29px 4px rgb(155 0 255);
 }
 
 @media screen and (max-width: 540px){
