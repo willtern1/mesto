@@ -1,34 +1,6 @@
 import {imagePopup, popupImagePicture, popupImageTitle, openPopup} from './index.js';
 
-const initialCards = [
-  {
-    name: 'Враг',
-    link: 'https://i.yapx.ru/OUGUQ.jpg'
-  },
-  {
-    name: 'Пленницы',
-    link: 'https://i.yapx.ru/OUGUT.jpg'
-  },
-  {
-    name: 'Убийца',
-    link: 'https://i.yapx.ru/OUGUW.jpg'
-  },
-  {
-    name: 'Прибытие',
-    link: 'https://i.yapx.ru/OUGUd.png'
-  },
-  {
-    name: 'Бегущий по лезвию 2049',
-    link: 'https://i.yapx.ru/OUGRZ.png'
-  },
-  {
-    name: 'Дюна',
-    link: 'https://i.yapx.ru/OUGUZ.jpg'
-  },
-];
-
-
-class Card {
+export class Card {
   constructor(data, elementTemplate) {
     this._name = data.name;
     this._link = data.link;
@@ -75,10 +47,3 @@ class Card {
     popupImagePicture.alt = this._name;
   }
 }
-
-initialCards.forEach((card) => {
-  const newCard = new Card (card, '#template-element'); //Создаём класс дял каждой карточки,передаём темплейт,
-  const cardsSection = document.querySelector('.elements'); // находим блок для карточек
-  const cardElement = newCard.generateCard(); //пихаем метод класса Card в переменную
-  cardsSection.prepend(cardElement); // пихаем карточку в конец блока
-})
