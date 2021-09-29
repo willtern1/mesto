@@ -1,21 +1,21 @@
 import {FormValidator} from './FormValidator.js'
 import {Card} from "./Card.js";
 import {
+  addCardButton,
+  cardForm,
+  cardPopup,
+  cardsSection,
   editButton,
-  profilePopup,
+  initialCards,
+  popupCardLinkInput,
+  popupCardTitleInput,
   profileFormElement,
-  profileNameInput,
+  profileJob,
   profileJobInput,
   profileName,
-  profileJob,
-  popupCardTitleInput,
-  popupCardLinkInput,
-  cardForm,
-  addCardButton,
-  cardPopup,
-  validitySelectorList,
-  initialCards,
-  cardsSection
+  profileNameInput,
+  profilePopup,
+  validitySelectorList
 } from './variables.js';
 
 //вызов метода класса кард для массива карточек
@@ -26,8 +26,7 @@ initialCards.forEach((card) => {
 
 function createCard(card) {
   const newCard = new Card (card, '#template-element');//Создаём класс дял каждой карточки,передаём темплейт,
-  const cardElement = newCard.generateCard();
-  return cardElement
+  return newCard.generateCard();
 }
 
 // Закрытие поп по Escape
