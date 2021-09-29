@@ -9,6 +9,7 @@ export class FormValidator {
     this._formElement = formElement;
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     this._inputList = this._formElement.querySelectorAll(this._inputSelector);
+    this._inputListArray = Array.from(this._formElement.querySelectorAll(this._inputSelector)); //делаем массив из инпутов
   }
   //функция  вызова текста ошибки в инпутах
   _showInputError(inputElement) {
@@ -49,14 +50,14 @@ export class FormValidator {
 
   // функция проверки валидности каждого инпута
   _hasInvalidInput() {
-    return this._inputList.some((inputElement) => {
+    return this._inputListArray.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   }
 
   //функция проверки количества символов в инпутах
   _hasEmptyValue() {
-    return this._inputList.some((inputElement) => {
+    return this._inputListArray.some((inputElement) => {
       return inputElement.value.length === 0;
     });
   }
@@ -83,9 +84,6 @@ export class FormValidator {
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault(); // офаем дефолстный метод
     });
-
-     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector)); //делаем массив из инпутов
-
     this._toggleButtonState(this._inputList);
 
     this._inputList.forEach((inputElement) => {  //отключаем ошибку для каждого инпута
