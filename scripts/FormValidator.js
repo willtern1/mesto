@@ -7,6 +7,8 @@ export class FormValidator {
     this._inputErrorClass = selectorsList.inputErrorClass;
     this._errorClass = selectorsList.errorClass;
     this._formElement = formElement;
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+    this._inputList = this._formElement.querySelectorAll(this._inputSelector);
   }
   //функция  вызова текста ошибки в инпутах
   _showInputError(inputElement) {
@@ -46,28 +48,34 @@ export class FormValidator {
   }
 
   // функция проверки валидности каждого инпута
-  _hasInvalidInput(inputList) {
-    return inputList.some((inputElement) => {
+  _hasInvalidInput() {
+    return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   }
 
   //функция проверки количества символов в инпутах
-  _hasEmptyValue(inputList) {
-    return inputList.some((inputElement) => {
+  _hasEmptyValue() {
+    return this._inputList.some((inputElement) => {
       return inputElement.value.length === 0;
     });
   }
 
   // функция включения и отключения кнопки, от валидности ипутов
-  _toggleButtonState(inputList) {
-    const buttonElement = this._formElement.querySelector(this._submitButtonSelector); //пихаем кнопку с формы в переменную
-
-    if (this._hasInvalidInput(inputList) || this._hasEmptyValue(inputList)) { //если условия инпутов не соблюдены и их содержание 0
-      this._disableButtonSubmit(buttonElement); //вырубаем кнопку
+  _toggleButtonState() {
+    if (this._hasInvalidInput(this._inputList) || this._hasEmptyValue(this._inputList)) { //если условия инпутов не соблюдены и их содержание 0
+      this._disableButtonSubmit(this._buttonElement); //вырубаем кнопку
     } else { //если условия валидны,кнопка активная
-      this._enableButtonSubmit(buttonElement);
+      this._enableButtonSubmit(this._buttonElement);
     }
+  }
+//Ресет формы
+  resetValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+
   }
 
   // лиснер форм попапов на валидность инпутов. с включением и  отключениме кнопки и отображения текста ошибки
@@ -76,16 +84,16 @@ export class FormValidator {
       evt.preventDefault(); // офаем дефолстный метод
     });
 
-    const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector)); //делаем массив из инпутов
+     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector)); //делаем массив из инпутов
 
-    this._toggleButtonState(inputList);
+    this._toggleButtonState(this._inputList);
 
-    inputList.forEach((inputElement) => {  //отключаем ошибку для каждого инпута
+    this._inputList.forEach((inputElement) => {  //отключаем ошибку для каждого инпута
       this._hideInputError(inputElement);
 
       inputElement.addEventListener('input', () => {
         this._checkInputValid(inputElement);  //проверка ипутов на валидность при вводе
-        this._toggleButtonState(inputList);
+        this._toggleButtonState(this._inputList);
       });
     });
   }

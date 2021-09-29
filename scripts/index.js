@@ -14,16 +14,22 @@ import {
   addCardButton,
   cardPopup,
   validitySelectorList,
-  initialCards
+  initialCards,
+  cardsSection
 } from './variables.js';
 
 //вызов метода класса кард для массива карточек
 initialCards.forEach((card) => {
-  const newCard = new Card (card, '#template-element'); //Создаём класс дял каждой карточки,передаём темплейт,
-  const cardsSection = document.querySelector('.elements'); // находим блок для карточек
-  const cardElement = newCard.generateCard(); //пихаем метод класса Card в переменную
-  cardsSection.prepend(cardElement); // пихаем карточку в конец блока
+  createCard(card);
+  cardsSection.prepend(createCard(card)); // пихаем карточку в конец блока
 })
+
+function createCard(card) {
+  const newCard = new Card (card, '#template-element');//Создаём класс дял каждой карточки,передаём темплейт,
+  const cardElement = newCard.generateCard();
+  return cardElement
+}
+
 // Закрытие поп по Escape
 function closePopupEsc(evt){
   if (evt.key === "Escape") {
@@ -35,7 +41,6 @@ function closePopupEsc(evt){
 function closePopupOver(evt){
   if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-icon')) {
     closePopup(document.querySelector('.popup_opened'));
-    cardForm.reset();
   }
 }
 
@@ -69,10 +74,8 @@ function  submitCardForm (event) {
      name: popupCardTitleInput.value,
      link: popupCardLinkInput.value
   }
-  const lol = new Card(newCard, '#template-element');
-  const cardsSection = document.querySelector('.elements');
-  const cardElement = lol.generateCard(); //пихаем метод класса Card в переменную
-  cardsSection.prepend(cardElement); // пихаем карточку в конец блока
+  createCard(newCard);
+  cardsSection.prepend(createCard(newCard)); // пихаем карточку в конец блока
   closePopup(cardPopup);
   cardForm.reset();
 }
@@ -80,14 +83,16 @@ function  submitCardForm (event) {
 editButton.addEventListener('click', () => {
   profileNameInput.value = profileName.textContent;
   profileJobInput.value = profileJob.textContent;
-  const profileValidate = new FormValidator(validitySelectorList, profileFormElement );
-  profileValidate.enableValidation()
+  profileValidate.resetValidation() //сброс формы
   openPopup(profilePopup)});
 profileFormElement.addEventListener('submit', submitProfileForm);
 addCardButton.addEventListener('click', () => {
-  const cardFormElement = new FormValidator(validitySelectorList, cardForm);
-  cardFormElement.enableValidation();
+  cardFormElement.resetValidation(); //сброс формы
   openPopup(cardPopup)
 });
 cardForm.addEventListener('submit', submitCardForm);
-
+//Вад=лидация форм попапов
+const profileValidate = new FormValidator(validitySelectorList, profileFormElement );
+profileValidate.enableValidation();
+const cardFormElement = new FormValidator(validitySelectorList, cardForm);
+cardFormElement.enableValidation();

@@ -5,6 +5,7 @@ export const profileNameInput = profileFormElement.querySelector('.popup__input_
 export const profileJobInput = profileFormElement.querySelector('.popup__input_element_job');
 export const profileName = document.querySelector('.profile__name');
 export const profileJob = document.querySelector('.profile__job');
+export const cardsSection = document.querySelector('.elements');
 export const popupCardTitleInput = document.querySelector('.popup__input_element_title');
 export const popupCardLinkInput = document.querySelector('.popup__input_element_link');
 export const cardForm = document.querySelector('.popup__form_type_add-place');
