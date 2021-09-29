@@ -13,8 +13,10 @@
   z-index: 2;
   background-position: center;
   cursor: pointer;
+  box-shadow: 0px 0px 35px 5px rgb(255 0 0);
 }
 
 .element__trash-button:hover{
+  /*box-shadow: 0px 0px 15px 5px rgb(255 0 0);*/
   opacity: 0.6;
 }
