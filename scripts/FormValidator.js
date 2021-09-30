@@ -9,7 +9,7 @@ export class FormValidator {
     this._formElement = formElement;
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     this._inputList = this._formElement.querySelectorAll(this._inputSelector);
-    this._inputListArray = Array.from(this._formElement.querySelectorAll(this._inputSelector)); //делаем массив из инпутов
+    this._inputListArray = Array.from(this._inputList); //делаем массив из инпутов
   }
   //функция  вызова текста ошибки в инпутах
   _showInputError(inputElement) {
@@ -84,14 +84,14 @@ export class FormValidator {
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault(); // офаем дефолстный метод
     });
-    this._toggleButtonState(this._inputList);
+    this._toggleButtonState();
 
     this._inputList.forEach((inputElement) => {  //отключаем ошибку для каждого инпута
       this._hideInputError(inputElement);
 
       inputElement.addEventListener('input', () => {
         this._checkInputValid(inputElement);  //проверка ипутов на валидность при вводе
-        this._toggleButtonState(this._inputList);
+        this._toggleButtonState();
       });
     });
   }

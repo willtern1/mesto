@@ -20,7 +20,6 @@ import {
 
 //вызов метода класса кард для массива карточек
 initialCards.forEach((card) => {
-  createCard(card);
   cardsSection.prepend(createCard(card)); // пихаем карточку в конец блока
 })
 
