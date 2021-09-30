@@ -15,7 +15,7 @@
   cursor: pointer;
   grid-row: 1/2;
   grid-column: 4/5;
-  box-shadow: 0px 0px 60px 4px rgb(155 0 255);
+  box-shadow: 0px 0px 30px 4px rgb(155 0 255);
 }
 
 @media screen and (max-width: 540px) {
@@ -28,7 +28,8 @@
 }
 
 .profile__add-card-button:hover {
-  opacity: 0.6;
+  /*opacity: 0.6;*/
   transition: 1s;
   transform: scale(1.1);
+  box-shadow: 0px 0px 60px 4px rgb(155 0 255);
 }
