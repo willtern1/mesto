@@ -1,6 +1,4 @@
-import {openPopup} from './index.js';
-import {imagePopup, popupImagePicture, popupImageTitle} from './variables.js';
-
+import {imagePopupClass} from  './index.js'
 export class Card {
   constructor(data, elementTemplate) {
     this._name = data.name;
@@ -42,9 +40,10 @@ export class Card {
     evt.target.closest('.element').remove();
   }
   _popupImage = () => {
-    openPopup(imagePopup);
-    popupImagePicture.src = this._link;
-    popupImageTitle.textContent = this._name;
-    popupImagePicture.alt = this._name;
+    imagePopupClass.open(this._link, this._name);
+    // openPopup(imagePopup);
+    // popupImagePicture.src = this._link;
+    // popupImageTitle.textContent = this._name;
+    // popupImagePicture.alt = this._name;
   }
 }
