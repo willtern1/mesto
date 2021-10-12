@@ -1,7 +1,7 @@
 export  default  class  UserInfo {
   constructor({ name, job}) {
-  this._name = name
-  this._job = job
+    this._name = name
+    this._job = job
   }
   getUserInfo() {
     return {
@@ -10,7 +10,7 @@ export  default  class  UserInfo {
     }
   }
   setUserInfo(userInfo) {
-  this._name.textContent = userInfo.name
-  this._job.textContent = userInfo.job
+    this._name.textContent = userInfo.profile_name
+    this._job.textContent = userInfo.profile_job
   }
 }

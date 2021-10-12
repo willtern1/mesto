@@ -1,9 +1,9 @@
-import {imagePopupClass} from  './index.js'
 export class Card {
-  constructor(data, elementTemplate) {
+  constructor(data, elementTemplate, {handleCardClick}) {
     this._name = data.name;
     this._link = data.link;
     this._elementTemplate = elementTemplate;
+    this._handleCardClick = handleCardClick;
   }
   _getTemplate() {
     let cardElement;
@@ -31,7 +31,7 @@ export class Card {
   _setEventListeners() {
     this._element.querySelector('.element__button').addEventListener('click', this._likeClick);
     this._element.querySelector('.element__trash-button').addEventListener('click', this._deleteCard);
-    this._element.querySelector('.element__image').addEventListener('click', this._popupImage);
+    this._element.querySelector('.element__image').addEventListener('click', this._handleCardClick);
   }
   _likeClick(evt) {
     evt.target.classList.toggle('element__button_active');
@@ -39,11 +39,11 @@ export class Card {
   _deleteCard(evt) {
     evt.target.closest('.element').remove();
   }
-  _popupImage = () => {
-    imagePopupClass.open(this._link, this._name);
-    // openPopup(imagePopup);
-    // popupImagePicture.src = this._link;
-    // popupImageTitle.textContent = this._name;
-    // popupImagePicture.alt = this._name;
-  }
+  // _popupImage = () => {
+  //   imagePopupClass.open(this._link, this._name);
+  //   // openPopup(imagePopup);
+  //   // popupImagePicture.src = this._link;
+  //   // popupImageTitle.textContent = this._name;
+  //   // popupImagePicture.alt = this._name;
+  // }
 }
