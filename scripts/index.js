@@ -30,6 +30,7 @@ const defaultCardList = new Section({
     const card = new Card(item, '#template-element', {
       handleCardClick: ()=> {
         const  imagePopupClass = new PopupWithImage(imagePopup);
+        imagePopupClass.setEventListeners()
         imagePopupClass.open(item.link, item.name)
       }
     });
@@ -75,6 +76,7 @@ const cardPopupForm = new PopupWithForm(cardPopup, {
     const  newCardGeneration = new Card(newCard,  '#template-element', {
       handleCardClick: () => {
         const  imagePopupClass = new PopupWithImage(imagePopup);
+        imagePopupClass.setEventListeners()
         imagePopupClass.open(newCard.link, newCard.name)
       }
     })
@@ -87,6 +89,8 @@ const cardPopupValues = ()=> {
   cardFormElement.resetValidation()
   cardPopupForm.open()
 }
+popupProfile.setEventListeners()
+cardPopupForm.setEventListeners()
 //Лиснеры на кнопки
 editButton.addEventListener('click', profilePopupValues);
 addCardButton.addEventListener('click', cardPopupValues)
