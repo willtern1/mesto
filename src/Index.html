@@ -7,8 +7,7 @@
   <meta name="keywords" content="Фильмы, Дени Вильнёв, Бегущий по лезвию 2049, Прибытие, Дюна, Убийца, Пленницы, Враг">
   <meta name="description" content="Фильмы кинорежиссёра Дени Вильнёва">
   <meta name="author" content="Alex Zinchenko">
-  <link rel="icon" href="./images/icon/video__icon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="./pages/index.css">
+  <link rel="icon" href="<%=require('./images/icon/video__icon.ico')%>" type="image/x-icon">
   <title>Место</title>
 </head>
 <body class="body">
@@ -21,7 +20,7 @@
     <main class="content">
 
       <section aria-label="profile" class="profile">
-        <img class="profile__image" src="./images/David.jpg" alt="Фото Вильнёва">
+        <img class="profile__image" src="<%=require('./images/David.jpg')%>" alt="Фото Вильнёва">
         <div class="profile__info">
           <h1 class="profile__name">Дени Вильнёв</h1>
           <p class="profile__job">Франко-канадский кинорежиссёр и сценарист</p>
@@ -90,10 +89,5 @@
     </article>
 
   </template>
-
-  <script type="module" src="utils/variables.js"></script>
-  <script type="module" src="pages/index.js"></script>
-  <script type="module" src="components/FormValidator.js"></script>
-  <script type="module" src="components/Card.js"></script>
 </body>
 </html>
