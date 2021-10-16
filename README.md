@@ -1,6 +1,6 @@
 # Проект: Место
 
-## https://willtern1.github.io/mesto/Index.html
+## https://willtern1.github.io/mesto/src/index.html
 
 ### Обзор
 
