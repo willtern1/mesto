@@ -1,7 +1,7 @@
-import  './index.css';
+import './index.css';
 import {FormValidator} from '../components/FormValidator.js';
 import {Card} from "../components/Card.js";
-import  Section from "../components/Section.js";
+import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
@@ -10,7 +10,8 @@ import {
   cardForm,
   cardPopup,
   cardsSection,
-  editButton, imagePopup,
+  editButton,
+  imagePopup,
   initialCards,
   popupCardLinkInput,
   popupCardTitleInput,
@@ -23,19 +24,22 @@ import {
   validitySelectorList
 } from '../utils/variables.js';
 
-
+//Функция создания карчтоки
+function  createCard (item) {
+  const card = new Card(item, '#template-element', {
+    handleCardClick: ()=> {
+       imagePopupClass.open(item.link, item.name)
+    }
+  });
+  return card.generateCard()
+}
+//Попап с картинкой экземпляр класса
+const  imagePopupClass = new PopupWithImage(imagePopup);
 // Отрисовка карточек с классом секшен и кард и попы с картинкой
 const defaultCardList = new Section({
   items:  initialCards,
   renderer: (item) => {
-    const card = new Card(item, '#template-element', {
-      handleCardClick: ()=> {
-        const  imagePopupClass = new PopupWithImage(imagePopup);
-        imagePopupClass.setEventListeners()
-        imagePopupClass.open(item.link, item.name)
-      }
-    });
-    const cardElement = card.generateCard();
+    const cardElement = createCard(item)
     defaultCardList.addItem(cardElement);
   }
 }, cardsSection);
@@ -74,24 +78,20 @@ const cardPopupForm = new PopupWithForm(cardPopup, {
       name: popupCardTitleInput.value,
       link: popupCardLinkInput.value
     }
-    const  newCardGeneration = new Card(newCard,  '#template-element', {
-      handleCardClick: () => {
-        const  imagePopupClass = new PopupWithImage(imagePopup);
-        imagePopupClass.setEventListeners()
-        imagePopupClass.open(newCard.link, newCard.name)
+        const cardElement = createCard(newCard)
+        defaultCardList.addItem(cardElement)
       }
     })
-    const cardElement = newCardGeneration.generateCard()
-    cardsSection.prepend(cardElement)
-  }
-})
+
 // запихнул функции в функцию (тоже самое, что для профиля)
 const cardPopupValues = ()=> {
   cardFormElement.resetValidation()
   cardPopupForm.open()
 }
+//вызов метода лиснеров классов попапов
 popupProfile.setEventListeners()
 cardPopupForm.setEventListeners()
+imagePopupClass.setEventListeners()
 //Лиснеры на кнопки
 editButton.addEventListener('click', profilePopupValues);
 addCardButton.addEventListener('click', cardPopupValues)

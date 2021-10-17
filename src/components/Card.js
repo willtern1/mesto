@@ -6,10 +6,10 @@ export class Card {
     this._handleCardClick = handleCardClick;
   }
   _getTemplate() {
-    let cardElement;
-    cardElement = document
+    const cardElement = document
       .querySelector(this._elementTemplate)
       .content
+      .querySelector('.element')
       .cloneNode(true);
     // вернём DOM-элемент карточки
     return cardElement;
@@ -18,11 +18,12 @@ export class Card {
     // Запишем разметку в приватное поле _element.
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
+    const image = this._element.querySelector('.element__image')
     this._setEventListeners();
 
     // Добавим данные
-    this._element.querySelector('.element__image').src = this._link;
-    this._element.querySelector('.element__image').alt = this._name;
+    image.src = this._link;
+    image.alt = this._name;
     this._element.querySelector('.element__text').textContent = this._name;
 
     // Вернём элемент наружу
@@ -30,14 +31,14 @@ export class Card {
   }
   _setEventListeners() {
     this._element.querySelector('.element__button').addEventListener('click', this._likeClick);
-    this._element.querySelector('.element__trash-button').addEventListener('click', this._deleteCard);
+    this._element.querySelector('.element__trash-button').addEventListener('click', () => this._deleteCard());
     this._element.querySelector('.element__image').addEventListener('click', this._handleCardClick);
   }
   _likeClick(evt) {
     evt.target.classList.toggle('element__button_active');
   }
-  _deleteCard(evt) {
-    evt.target.closest('.element').remove();
+  _deleteCard() {
+    this._element.remove()
   }
   // _popupImage = () => {
   //   imagePopupClass.open(this._link, this._name);

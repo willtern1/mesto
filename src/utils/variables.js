@@ -25,26 +25,26 @@ export const validitySelectorList =({
 export const initialCards = [
   {
     name: 'Враг',
-    link: 'https://4.downloader.disk.yandex.ru/preview/a89d639eadfb6a400619a82ae7de1a74ea3560bcae89e1a85e2b252354f7f972/inf/XlFBtJ6_HIgwyeIlFkc5tIyv4QufqO0whubHiAy_RE_w01Tbeodpui9FxiK2vXxml72Tc9SnSb72jxgPret_sA%3D%3D?uid=909595364&filename=enemy.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=909595364&tknv=v2&size=1905x947'
+    link: 'https://i.ibb.co/6bL8yPt/enemy.jpg'
   },
   {
     name: 'Пленницы',
-    link: 'https://1.downloader.disk.yandex.ru/preview/d7c9e240a8fd002d0f0b1560e2f34ecfea82000301f42afa092d53fe189f69da/inf/kCKrL7dCvwG54O0pKqKnzqXmExLP4qSWjWFlcSPY9xNOoGIdYei0a4aEn2th1yMNzZJWxC04BSkgGjUwdL1Ppg%3D%3D?uid=909595364&filename=Prisoners.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=909595364&tknv=v2&size=1905x947'
+    link: 'https://i.ibb.co/kX00bY1/Prisoners.jpg'
   },
   {
     name: 'Убийца',
-    link: 'https://4.downloader.disk.yandex.ru/preview/783467c7113f67208bea70ceda0f6aacd9a2d1789a1c3791863b05618cecf824/inf/J3IMSyWtBGaUgxw7AgHkRqXmExLP4qSWjWFlcSPY9xN0zv3coJ1fx6iwMeeN1tyUtKqfFRyFNPFg5LS4G3vbPA%3D%3D?uid=909595364&filename=Sicario.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=909595364&tknv=v2&size=1905x947'
+    link: 'https://i.ibb.co/zS5CnbG/Sicario.jpg'
   },
   {
     name: 'Прибытие',
-    link: 'https://3.downloader.disk.yandex.ru/preview/1927b6862c2a5e2bfe2785239c8594ff8f271071990c76ec8d359f391293ddbf/inf/eZ-BuCqqUI0pZZNun1xf-KXmExLP4qSWjWFlcSPY9xN-ofHDKJcISzYgDxVkjpOaxgohIFpxw4d6FhGJWundDw%3D%3D?uid=909595364&filename=Arrival%2C.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=909595364&tknv=v2&size=1905x947'
+    link: 'https://i.ibb.co/CJzSnW8/Arrival.png'
   },
   {
     name: 'Бегущий по лезвию 2049',
-    link: 'https://1.downloader.disk.yandex.ru/preview/34c64cd146aba630702e53d343456a05a4e6a55ba07e516fe46ed735f8097c34/inf/8ZkUPQ_upvcJyPhO_qKhi_zFsnZ1rk_tre5xmh7Ru2Wq6-0-ctPVCa9taQf05xEXBhMm3Z3DEAx-cry_CQXZ1g%3D%3D?uid=909595364&filename=Bladerunner-blade-runner-2049.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=909595364&tknv=v2&size=1905x947'
+    link: 'https://i.ibb.co/k0P4gF4/Bladerunner-blade-runner-2049.png'
   },
   {
     name: 'Дюна',
-    link: 'https://2.downloader.disk.yandex.ru/preview/2fc9e4c838beca3ede7ae0ccd1aaf3bc72f6da56ebc04f5f4bf4ebca79533e34/inf/Q0Uv-r9WiRPI9u-3c6GaAYyv4QufqO0whubHiAy_RE-Usff2B4MtYgStOpnLfkpZ6ETVh_KohWl6XNcZvBWRqw%3D%3D?uid=909595364&filename=Dune.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=909595364&tknv=v2&size=1905x947'
+    link: 'https://i.ibb.co/bJsdfd9/Dune.jpg'
   },
 ];
