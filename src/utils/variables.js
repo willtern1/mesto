@@ -5,6 +5,7 @@ export const profileNameInput = profileFormElement.querySelector('.popup__input_
 export const profileJobInput = profileFormElement.querySelector('.popup__input_element_job');
 export const profileName = document.querySelector('.profile__name');
 export const profileJob = document.querySelector('.profile__job');
+export const profileAvatar = document.querySelector('.profile__image');
 export const cardsSection = document.querySelector('.elements');
 export const popupCardTitleInput = document.querySelector('.popup__input_element_title');
 export const popupCardLinkInput = document.querySelector('.popup__input_element_link');
@@ -14,6 +15,7 @@ export const cardPopup = document.querySelector('.popup_type_add-place');
 export const imagePopup = document.querySelector('.popup_type_image');
 export const popupImagePicture = document.querySelector('.popup__picture-image');
 export const popupImageTitle = document.querySelector('.popup__title-image');
+export const  popupDeleteCard = document.querySelector('.popup_type_delete-card');
 export const validitySelectorList =({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
