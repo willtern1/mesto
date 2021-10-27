@@ -71,6 +71,7 @@ function  createCard (item) {
     },
     handleLikeClick: (evt) => {
       evt.target.classList.toggle('element__button_active');
+
     },
     handleDeleteIconClick: () => {
 
