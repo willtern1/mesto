@@ -53,7 +53,6 @@ postCardData(data) {
       {method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        likes: [ ],
         name: data.name,
         link: data.link
       })}

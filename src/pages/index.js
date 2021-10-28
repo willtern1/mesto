@@ -5,6 +5,7 @@ import {Card} from "../components/Card.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupConfirm from "../components/PopupConfirm.js";;
 import UserInfo from "../components/UserInfo.js";
 import {
   addCardButton,
@@ -26,6 +27,7 @@ import {
   validitySelectorList,
   popupDeleteCard
 } from '../utils/variables.js';
+
 // мутки профильные с отрисовкой на странице
 const profileApi= new Api ({
   url: "https://nomoreparties.co/v1/cohort-29",
@@ -39,8 +41,10 @@ profileApiDom.then((data) => {
   profileName.textContent = data.name;
   profileJob.textContent = data.about;
   profileAvatar.src = data.avatar;
+  id.textContent = data._id;
 }).catch((err) => alert(err))
-
+const id = [];
+console.log(id)
 // мутки карточные с отрисовской
 const cardApi = new Api( {
   url: "https://mesto.nomoreparties.co/v1/cohort-29",
@@ -62,19 +66,36 @@ cardApiDom.then((data) => {
   cardList.renderer();
 })
 
+  const  deleteCardPopup = new PopupConfirm(popupDeleteCard);
+
 
 //Функция создания карчтоки
 function  createCard (item) {
-  const card = new Card(item, '#template-element', {
+  const card = new Card(item, '#template-element',id.textContent,{
     handleCardClick: ()=> {
        imagePopupClass.open(item.link, item.name)
     },
-    handleLikeClick: (evt) => {
-      evt.target.classList.toggle('element__button_active');
-
+    handleLikeClick: () => {
+    if (card._isLiked) {
+        cardApi.deleteLike(card.getIdCard()).then((res) => {
+          card.likeOff()
+          card.likesCounterUpdate(res.likes)
+        })
+    } else {
+      cardApi.putLikeCard(card.getIdCard()).then((res) => {
+        card.likeOn()
+        card.likesCounterUpdate(res.likes)
+      })
+    }
     },
     handleDeleteIconClick: () => {
-
+      deleteCardPopup.submitDeleteCard(() => {
+        cardApi.deteleCard(card).then(() => {
+          card.deleteCard()
+          deleteCardPopup.close()
+        })
+      })
+      deleteCardPopup.open()
     }
   });
   return card.generateCard()
@@ -119,11 +140,15 @@ const cardPopupForm = new PopupWithForm(cardPopup, {
 
     const newCard = {
       name: popupCardTitleInput.value,
-      link: popupCardLinkInput.value
+      link: popupCardLinkInput.value,
+      likes: [],
+      owner: {
+        _id: '0804464b7a75df5c8f503460'
+      }
     }
-        const cardElement = createCard(newCard)
-        cardApi.postCardData(newCard)
-        cardsSection.prepend(cardElement)
+    const cardElement = createCard(newCard)
+    cardApi.postCardData(newCard)
+    cardsSection.prepend(cardElement)
       }
     })
 
@@ -136,6 +161,7 @@ const cardPopupValues = ()=> {
 popupProfile.setEventListeners()
 cardPopupForm.setEventListeners()
 imagePopupClass.setEventListeners()
+deleteCardPopup.setEventListeners()
 //Лиснеры на кнопки
 editButton.addEventListener('click', profilePopupValues);
 addCardButton.addEventListener('click', cardPopupValues)
