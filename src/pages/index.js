@@ -79,12 +79,13 @@ function  createCard (item) {
     if (card._isLiked) {
         cardApi.deleteLike(card.getIdCard()).then((res) => {
           card.likeOff()
-          card.likesCounterUpdate(res.likes)
+          card.likesCounterUpdate(res.likes.length)
         })
     } else {
       cardApi.putLikeCard(card.getIdCard()).then((res) => {
         card.likeOn()
-        card.likesCounterUpdate(res.likes)
+        card.likesCounterUpdate(res.likes.length)
+        console.log(res.likes.length)
       })
     }
     },
