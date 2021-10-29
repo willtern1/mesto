@@ -5,7 +5,7 @@ import {Card} from "../components/Card.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import PopupConfirm from "../components/PopupConfirm.js";;
+import PopupConfirmDelete from "../components/PopupConfirmDelete.js";
 import UserInfo from "../components/UserInfo.js";
 import {
   addCardButton,
@@ -25,10 +25,19 @@ import {
   profileNameInput,
   profilePopup,
   validitySelectorList,
-  popupDeleteCard
+  popupDeleteCard,
+  avatarProfileContainer,
+  avatarPopup,
+  avatarInput,
+  avatarForm,
+  buttonCardSunmit,
+  buttonAvatarSubmit,
+  buttonProfileSubmit,
+  id
 } from '../utils/variables.js';
 
-// мутки профильные с отрисовкой на странице
+
+// пРофельный апи
 const profileApi= new Api ({
   url: "https://nomoreparties.co/v1/cohort-29",
   headers: {
@@ -36,16 +45,16 @@ const profileApi= new Api ({
     "content-type": "application/json"
   }
 })
+// вставка в размету данных с Апи
 const profileApiDom =  profileApi.getUserInfo();
 profileApiDom.then((data) => {
   profileName.textContent = data.name;
   profileJob.textContent = data.about;
   profileAvatar.src = data.avatar;
   id.textContent = data._id;
-}).catch((err) => alert(err))
-const id = [];
-console.log(id)
-// мутки карточные с отрисовской
+})
+
+// карточный Апи
 const cardApi = new Api( {
   url: "https://mesto.nomoreparties.co/v1/cohort-29",
   headers: {
@@ -53,6 +62,7 @@ const cardApi = new Api( {
     "content-type": "application/json"
   }
 })
+  //  отрисовка карточек с сервера
 const cardApiDom = cardApi.getCardsInfo();
 cardApiDom.then((data) => {
 
@@ -65,8 +75,8 @@ cardApiDom.then((data) => {
   }, cardsSection);
   cardList.renderer();
 })
-
-  const  deleteCardPopup = new PopupConfirm(popupDeleteCard);
+// экземпляр  попапа удаления карточки
+const  deleteCardPopup = new PopupConfirmDelete(popupDeleteCard)
 
 
 //Функция создания карчтоки
@@ -103,8 +113,6 @@ function  createCard (item) {
 }
 //Попап с картинкой экземпляр класса
 const  imagePopupClass = new PopupWithImage(imagePopup);
-// Отрисовка карточек с классом секшен и кард и попы с картинкой
-
 
 //экзенмляр клаасса Юзер инфа с селекторами
 const  userInfo = new UserInfo({
@@ -114,20 +122,25 @@ const  userInfo = new UserInfo({
 
 
 
-// экземпляр класса с формой  с сабмитом + саб на серв
+// экземпляр класса с формой профиля  с сабмитом + саб на серв
 const  popupProfile = new PopupWithForm(profilePopup,  {
   callbackFormSubmit: (userInfo)=> {
+    buttonProfileSubmit.textContent = 'Сохранение...'
     const  user = new UserInfo({
       name: profileName,
       job: profileJob
     })
-    user.setUserInfo(userInfo)
-    profileApi.pathUserData(profileName, profileJob)
+    setTimeout(function () {
+      user.setUserInfo(userInfo)
+      profileApi.pathUserData(profileName, profileJob)
+      popupProfile.close()
+    }, 1000)
   }
 })
 
 // костанта для  передачи значений в попап при  открытии,сброс валиды
 const profilePopupValues = () => {
+  buttonProfileSubmit.textContent = 'Сохранить'
   const  userData = userInfo.getUserInfo()
   profileNameInput .value= userData.name;
   profileJobInput .value= userData.job;
@@ -138,7 +151,7 @@ const profilePopupValues = () => {
 //Сабмит новой карточки по попапу + отправка карточки на серв
 const cardPopupForm = new PopupWithForm(cardPopup, {
   callbackFormSubmit: () => {
-
+    buttonCardSunmit.textContent = 'Создание...'
     const newCard = {
       name: popupCardTitleInput.value,
       link: popupCardLinkInput.value,
@@ -148,25 +161,54 @@ const cardPopupForm = new PopupWithForm(cardPopup, {
       }
     }
     const cardElement = createCard(newCard)
-    cardApi.postCardData(newCard)
-    cardsSection.prepend(cardElement)
+    setTimeout(function () {
+      cardApi.postCardData(newCard)
+      cardsSection.prepend(cardElement)
+      cardPopupForm.close()
+    }, 1000)
       }
     })
 
+//Сабмит нового аватара на страницу и на серв
+const  avatarPopupForm= new PopupWithForm(avatarPopup, {
+  callbackFormSubmit: () => {
+    buttonAvatarSubmit.textContent = 'Сохранение...'
+    profileApi.patchAvatar(avatarInput.value).then((res) => {
+      setTimeout(function () {
+        profileAvatar.src = avatarInput.value;
+        avatarPopupForm.close()
+      },1000)
+    })
+  }
+})
+
 // запихнул функции в функцию (тоже самое, что для профиля)
 const cardPopupValues = ()=> {
+  buttonCardSunmit.textContent = 'Создать'
   cardFormElement.resetValidation()
   cardPopupForm.open()
 }
+// Same...
+const  avatarPopupvalues =() => {
+  avatarPopupValidity.resetValidation()
+  buttonAvatarSubmit.textContent = 'Сохранить'
+  avatarPopupForm.open()
+}
 //вызов метода лиснеров классов попапов
+deleteCardPopup.setEventListeners()
+avatarPopupForm.setEventListeners()
 popupProfile.setEventListeners()
 cardPopupForm.setEventListeners()
 imagePopupClass.setEventListeners()
-deleteCardPopup.setEventListeners()
+
 //Лиснеры на кнопки
+avatarProfileContainer.addEventListener('click', avatarPopupvalues)
 editButton.addEventListener('click', profilePopupValues);
 addCardButton.addEventListener('click', cardPopupValues)
+
 //Вад=лидация форм попапов
+const avatarPopupValidity = new FormValidator(validitySelectorList, avatarForm);
+avatarPopupValidity.enableValidation()
 const profileValidate = new FormValidator(validitySelectorList, profileFormElement );
 profileValidate.enableValidation();
 const cardFormElement = new FormValidator(validitySelectorList, cardForm);

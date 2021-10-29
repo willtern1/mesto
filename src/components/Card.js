@@ -27,7 +27,7 @@ export class Card {
     const image = this._element.querySelector('.element__image')
     this._setEventListeners();
     this._trashButton()
-    this.like()
+    this._like()
 
     // Добавим данные
     image.src = this._link;
@@ -43,9 +43,8 @@ export class Card {
     this._element.querySelector('.element__button').addEventListener('click', this._handleLikeClick);
     this._element.querySelector('.element__trash-button').addEventListener('click', this._handleDeleteIconClick);
     this._element.querySelector('.element__image').addEventListener('click', this._handleCardClick);
-    // this.like()
     this.likesCounterUpdate()
-    this.likeCheked()
+    this._likeCheked()
   }
 
   _trashButton () {
@@ -53,7 +52,7 @@ export class Card {
       this._element.querySelector('.element__trash-button').style.display = 'none';
     }
   }
-  like() {
+  _like() {
   if (this._likes.some((like) => like._id === this._userId)) {
     this.likeOn()
   } else {
@@ -80,7 +79,7 @@ export class Card {
     this._likesCounter = data
     this._element.querySelector('.element__button-likes-counter').textContent =   this._likesCounter
   }
-  likeCheked () {
+  _likeCheked () {
     if (this._likes._id === this._userId) {
       this._likeButton.classList.add('element__button_active');
     }

@@ -16,6 +16,14 @@ export const imagePopup = document.querySelector('.popup_type_image');
 export const popupImagePicture = document.querySelector('.popup__picture-image');
 export const popupImageTitle = document.querySelector('.popup__title-image');
 export const  popupDeleteCard = document.querySelector('.popup_type_delete-card');
+export const  avatarProfileContainer = document.querySelector('.profile__avatar-container');
+export const avatarPopup = document.querySelector('.popup_type_add-avatar');
+export const  avatarForm = document.querySelector('.popup__form_type_add-avatar')
+export const avatarInput = document.querySelector('.popup__input_avatar_link');
+export const buttonAvatarSubmit = document.querySelector('.popup__button_type_add-avatar')
+export const buttonCardSunmit = document.querySelector('.popup__button_type_add-place');
+export const buttonProfileSubmit = document.querySelector('.popup__button_type_edit-profile');
+export  const id = [];
 export const validitySelectorList =({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',

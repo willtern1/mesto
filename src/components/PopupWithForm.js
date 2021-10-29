@@ -13,7 +13,7 @@ setEventListeners() {
     this._popupSelector.addEventListener('submit', (e) => {
       e.preventDefault()
       this._callbackFormSubmit(this._getInputValue())
-      this.close()
+      // this.close()
   })
 }
 _getInputValue() {

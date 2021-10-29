@@ -97,7 +97,7 @@ patchAvatar(data) {
       {method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: data.avatar,
+        avatar: data,
       })}).then((res) => {
         return this._responseCheck(res)
     })
