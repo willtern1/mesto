@@ -32,14 +32,14 @@ getCardsInfo() {
 }
 
 //изменения профиля
-pathUserData(name, job) {
+pathUserData(data) {
     return fetch(
       `${this._url}/users/me`,
       {method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({
-          name: name.textContent,
-          about: job.textContent
+          name: data.name,
+          about: data.about
         })}
       ).then((res) => {
         return this._responseCheck(res)
@@ -97,7 +97,7 @@ patchAvatar(data) {
       {method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: data,
+        avatar: data.avatar,
       })}).then((res) => {
         return this._responseCheck(res)
     })

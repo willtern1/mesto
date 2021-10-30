@@ -14,9 +14,6 @@ import {
   cardsSection,
   editButton,
   imagePopup,
-  initialCards,
-  popupCardLinkInput,
-  popupCardTitleInput,
   profileFormElement,
   profileJob,
   profileJobInput,
@@ -26,9 +23,8 @@ import {
   profilePopup,
   validitySelectorList,
   popupDeleteCard,
-  avatarProfileContainer,
+  openUpdateAvatarPopupBtn,
   avatarPopup,
-  avatarInput,
   avatarForm,
   buttonCardSunmit,
   buttonAvatarSubmit,
@@ -37,44 +33,33 @@ import {
 } from '../utils/variables.js';
 
 
-// пРофельный апи
-const profileApi= new Api ({
-  url: "https://nomoreparties.co/v1/cohort-29",
-  headers: {
-    authorization: "10765781-c34f-49ea-91c2-5a34ebcb851f",
-    "content-type": "application/json"
-  }
-})
-// вставка в размету данных с Апи
-const profileApiDom =  profileApi.getUserInfo();
-profileApiDom.then((data) => {
-  profileName.textContent = data.name;
-  profileJob.textContent = data.about;
-  profileAvatar.src = data.avatar;
-  id.textContent = data._id;
-})
-
-// карточный Апи
-const cardApi = new Api( {
+// экза апи
+const api = new Api ({
   url: "https://mesto.nomoreparties.co/v1/cohort-29",
   headers: {
     authorization: "10765781-c34f-49ea-91c2-5a34ebcb851f",
     "content-type": "application/json"
   }
 })
-  //  отрисовка карточек с сервера
-const cardApiDom = cardApi.getCardsInfo();
-cardApiDom.then((data) => {
-
-  const cardList = new Section({
-    items:  data,
-    renderer: (item) => {
-      const cardElement = createCard(item)
-      cardList.addItem(cardElement);
-    }
-  }, cardsSection);
-  cardList.renderer();
+// вставка в размету данных с Апи
+api.getUserInfo().then((data) => {
+  userInfo.setUserInfo(data)
 })
+
+//экземпляр класса секшен
+const cardList = new Section({
+  renderer: (item) => {
+    cardList.addItem(createCard(item));
+  }
+}, cardsSection);
+
+//отрисовка карт с сервера
+api.getCardsInfo().then((data) => {
+   cardList.renderItems(data)
+}).catch((err) => {
+  alert(`Ошибка загрузки карточек : ${err.status}`)
+})
+
 // экземпляр  попапа удаления карточки
 const  deleteCardPopup = new PopupConfirmDelete(popupDeleteCard)
 
@@ -83,27 +68,33 @@ const  deleteCardPopup = new PopupConfirmDelete(popupDeleteCard)
 function  createCard (item) {
   const card = new Card(item, '#template-element',id.textContent,{
     handleCardClick: ()=> {
-       imagePopupClass.open(item.link, item.name)
+       popupImage.open(item.link, item.name)
     },
     handleLikeClick: () => {
     if (card._isLiked) {
-        cardApi.deleteLike(card.getIdCard()).then((res) => {
+        api.deleteLike(card.getIdCard()).then((res) => {
           card.likeOff()
           card.likesCounterUpdate(res.likes.length)
+        }).catch((err) => {
+          alert(`Ошибченко : ${err.status}`)
         })
     } else {
-      cardApi.putLikeCard(card.getIdCard()).then((res) => {
+      api.putLikeCard(card.getIdCard()).then((res) => {
         card.likeOn()
         card.likesCounterUpdate(res.likes.length)
         console.log(res.likes.length)
+      }).catch((err) => {
+        alert(`ОшибОчка: ${err.status}`)
       })
     }
     },
     handleDeleteIconClick: () => {
       deleteCardPopup.submitDeleteCard(() => {
-        cardApi.deteleCard(card).then(() => {
+        api.deteleCard(card).then(() => {
           card.deleteCard()
           deleteCardPopup.close()
+        }).catch((err) => {
+          alert(`Ошибася : ${err.status}`)
         })
       })
       deleteCardPopup.open()
@@ -112,86 +103,93 @@ function  createCard (item) {
   return card.generateCard()
 }
 //Попап с картинкой экземпляр класса
-const  imagePopupClass = new PopupWithImage(imagePopup);
+const  popupImage = new PopupWithImage(imagePopup);
 
 //экзенмляр клаасса Юзер инфа с селекторами
 const  userInfo = new UserInfo({
   name: profileName,
-  job: profileJob
+  job: profileJob,
+  avatar: profileAvatar,
+  id: id
 })
-
+//Функция изменения кнопки при сабмите
+function renderLoading(loading) {
+if (loading === true) {
+  buttonProfileSubmit.textContent = 'Сохранение...'
+  buttonCardSunmit.textContent = 'Создание...'
+  buttonAvatarSubmit.textContent = 'Сохранение...'
+}else {
+  buttonProfileSubmit.textContent = 'Сохранить'
+  buttonCardSunmit.textContent = 'Создать'
+  buttonAvatarSubmit.textContent = 'Сохранить'
+}
+}
 
 
 // экземпляр класса с формой профиля  с сабмитом + саб на серв
 const  popupProfile = new PopupWithForm(profilePopup,  {
-  callbackFormSubmit: (userInfo)=> {
-    buttonProfileSubmit.textContent = 'Сохранение...'
-    const  user = new UserInfo({
-      name: profileName,
-      job: profileJob
-    })
-    setTimeout(function () {
-      user.setUserInfo(userInfo)
-      profileApi.pathUserData(profileName, profileJob)
-      popupProfile.close()
-    }, 1000)
+  callbackFormSubmit: (data)=> {
+    renderLoading(true)
+      api.pathUserData(data).then((res) => {
+        userInfo.setUserInfo(res)
+        popupProfile.close()
+      }).catch((err) => {
+        popupProfile.open()
+        alert(`Ошибка при отправке данных на сервер ${err.status}`)
+      }).finally(() => {
+        renderLoading(false)
+      })
   }
 })
 
 // костанта для  передачи значений в попап при  открытии,сброс валиды
-const profilePopupValues = () => {
-  buttonProfileSubmit.textContent = 'Сохранить'
+const openEditProfilePopup = () => {
   const  userData = userInfo.getUserInfo()
   profileNameInput .value= userData.name;
   profileJobInput .value= userData.job;
-  profileValidate.resetValidation()
+  validatorEditProfile.resetValidation()
   popupProfile.open()
 }
 
 //Сабмит новой карточки по попапу + отправка карточки на серв
 const cardPopupForm = new PopupWithForm(cardPopup, {
-  callbackFormSubmit: () => {
-    buttonCardSunmit.textContent = 'Создание...'
-    const newCard = {
-      name: popupCardTitleInput.value,
-      link: popupCardLinkInput.value,
-      likes: [],
-      owner: {
-        _id: '0804464b7a75df5c8f503460'
-      }
-    }
-    const cardElement = createCard(newCard)
-    setTimeout(function () {
-      cardApi.postCardData(newCard)
-      cardsSection.prepend(cardElement)
-      cardPopupForm.close()
-    }, 1000)
+  callbackFormSubmit: (data) => {
+      renderLoading(true)
+      api.postCardData(data).then((res) => {
+        cardList.addItemPrepend(createCard(res))
+        cardPopupForm.close()
+      }).catch((err) => {
+        alert(`А не добавить карточку, ошибка :${err.status}`)
+      }).finally(() => {
+        renderLoading(false)
+      })
       }
     })
 
 //Сабмит нового аватара на страницу и на серв
 const  avatarPopupForm= new PopupWithForm(avatarPopup, {
-  callbackFormSubmit: () => {
-    buttonAvatarSubmit.textContent = 'Сохранение...'
-    profileApi.patchAvatar(avatarInput.value).then((res) => {
-      setTimeout(function () {
-        profileAvatar.src = avatarInput.value;
+  callbackFormSubmit: (data) => {
+    console.log(data)
+    renderLoading(true)
+    api.patchAvatar(data).then((res) => {
+        userInfo.setUserInfo(res)
         avatarPopupForm.close()
-      },1000)
+    }).catch((err) => {
+      alert(`Не удалось обновить аватар , ошибка : ${err.status}`)
+    }).finally(()=> {
+      renderLoading(false)
     })
   }
 })
 
 // запихнул функции в функцию (тоже самое, что для профиля)
-const cardPopupValues = ()=> {
-  buttonCardSunmit.textContent = 'Создать'
-  cardFormElement.resetValidation()
+const openAddCardPopup = ()=> {
+  validatorAddCard.resetValidation()
   cardPopupForm.open()
 }
 // Same...
-const  avatarPopupvalues =() => {
-  avatarPopupValidity.resetValidation()
-  buttonAvatarSubmit.textContent = 'Сохранить'
+const  openUpdateAvatarPopup =() => {
+  validatorUpdateAvatar.resetValidation()
   avatarPopupForm.open()
 }
 //вызов метода лиснеров классов попапов
@@ -199,17 +197,17 @@ deleteCardPopup.setEventListeners()
 avatarPopupForm.setEventListeners()
 popupProfile.setEventListeners()
 cardPopupForm.setEventListeners()
-imagePopupClass.setEventListeners()
+popupImage.setEventListeners()
 
 //Лиснеры на кнопки
-avatarProfileContainer.addEventListener('click', avatarPopupvalues)
-editButton.addEventListener('click', profilePopupValues);
-addCardButton.addEventListener('click', cardPopupValues)
+openUpdateAvatarPopupBtn.addEventListener('click', openUpdateAvatarPopup)
+editButton.addEventListener('click', openEditProfilePopup);
+addCardButton.addEventListener('click', openAddCardPopup)
 
 //Вад=лидация форм попапов
-const avatarPopupValidity = new FormValidator(validitySelectorList, avatarForm);
-avatarPopupValidity.enableValidation()
-const profileValidate = new FormValidator(validitySelectorList, profileFormElement );
-profileValidate.enableValidation();
-const cardFormElement = new FormValidator(validitySelectorList, cardForm);
-cardFormElement.enableValidation();
+const validatorUpdateAvatar = new FormValidator(validitySelectorList, avatarForm);
+validatorUpdateAvatar.enableValidation()
+const validatorEditProfile = new FormValidator(validitySelectorList, profileFormElement );
+validatorEditProfile.enableValidation();
+const validatorAddCard = new FormValidator(validitySelectorList, cardForm);
+validatorAddCard.enableValidation();
