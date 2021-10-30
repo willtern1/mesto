@@ -14,9 +14,9 @@
   padding: 0;
   margin-bottom: 37px;
   transition: opacity .3s linear;
-  background-color: rgb(155 0 255 / 36%);
+  background-color: #00c119;
   border: 2px solid #FFFFFF;
-  box-shadow: 0px 0px 30px 11px rgb(155 0 255);
+  box-shadow: 0 0 30px 11px #00c119;
 }
 
 @media screen and (max-width: 540px) {

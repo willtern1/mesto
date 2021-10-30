@@ -1,11 +1,11 @@
 .element__trash-button {
-  background-image: url(../../../images/trash.svg);
+  background-image: url(../../../images/trashbutton.svg);
   background-color: transparent;
   width: 18px;
   align-self: flex-end;
   height: 19.3px;
   background-repeat: no-repeat;
-  background-size: 18px;
+  background-size: 41px;
   margin-right: 18px;
   margin-top: 15px;
   position: absolute;

@@ -40,11 +40,11 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
+            loader:  "css-loader",
             options: {
               importLoaders: 1
             }

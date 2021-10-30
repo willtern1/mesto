@@ -9,7 +9,7 @@
   grid-row: 1/1;
   grid-column: 1/2;
   border: 5px solid rgb(255 255 255);
-  box-shadow: 0px 0px 10px 4px rgb(155 0 255);
+  box-shadow: 0px 0px 10px 4px rgb(255 169 0);
 }
 
 .profile__image:hover {

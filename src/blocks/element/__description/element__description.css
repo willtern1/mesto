@@ -11,5 +11,5 @@
   align-items: center;
   gap: 0% 8%;
   z-index: 1;
-  background: linear-gradient(0deg, rgb(124, 128, 127), rgb(255, 255, 255), rgb(107, 107, 107));
+  background: linear-gradient(0deg,#8d5f05,#000000,#000000);
 }

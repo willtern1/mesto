@@ -3,7 +3,8 @@
   align-self: center;
   margin: 0;
   color: rgba(0, 0, 0, 1);
-  font-family: 'Inter', Arial, Helvetica, sans-serif, 'Times New Roman', Times, serif;
+  /*font-family: Deusex Regular, Arial, Helvetica, sans-serif, 'Times New Roman', Times, serif;*/
+  font-family: Deus, sans-serif;
   font-weight: 900;
   font-style: normal;
   font-size: 24px;
@@ -14,7 +15,7 @@
   overflow: hidden;
   white-space: nowrap;
   background: linear-gradient(
-    1deg, rgb(0 0 0), rgb(118 106 143), rgb(0, 0, 0));
+    1deg,#ffffff,#9b9191,#fff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

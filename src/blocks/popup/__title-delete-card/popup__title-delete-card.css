@@ -4,8 +4,5 @@
   margin-left: 36px;
   margin-bottom: 2px;
   -webkit-text-fill-color: transparent;
-  background: linear-gradient(
-    179deg,#000,#fff,#000);
   -webkit-background-clip: text;
-  text-shadow: -1px 1px #9370db;
 }

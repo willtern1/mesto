@@ -9,10 +9,10 @@
   margin-left: 36px;
   margin-bottom: 48px;
   background: linear-gradient(
-    179deg, rgb(0 0 0), rgb(255 255 255), rgb(0, 0, 0));
+    179deg,#ffffff,#000000,#ffa900);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: -1px 1px mediumpurple;
+  text-shadow: -1px 1px #ffa900;
 }
 
 @media screen and (max-width: 540px) {
