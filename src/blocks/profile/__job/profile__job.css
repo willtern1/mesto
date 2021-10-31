@@ -10,6 +10,10 @@
   max-width: 100%;
   overflow: hidden;
   white-space: nowrap;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(
+    1deg,#fff,#9b9191,#fff);
+  -webkit-background-clip: text;
 }
 
 @media screen and (max-width: 540px) {
