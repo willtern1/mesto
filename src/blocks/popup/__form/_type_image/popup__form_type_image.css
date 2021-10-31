@@ -4,3 +4,8 @@
   box-shadow: none;
   border:none;
 }
+@media screen and (max-width: 540px) {
+  .popup__form_type_image {
+    max-width: 100vw;
+  }
+}
