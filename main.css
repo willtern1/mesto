@@ -35,7 +35,7 @@
 .popup__container_type_image{background-color:transparent;border-radius:10px;box-shadow:0 0 25px transparent;display:flex;justify-content:center;margin:0 auto;max-height:75vh;max-width:75vw;position:relative;width:auto}
 .popup__form_type_image{background:none;border:none;box-shadow:none;margin:0}
 .popup__picture-image{border:5px solid rgb(255 250 255/83%);border-radius:10px 10px 10px 10px;box-shadow:0 0 10px 4px #fc0;max-height:75vh;max-width:75vw;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center}
-.popup__title-image{color:#fff;font-size:12px;font-style:normal;font-weight:400;height:20px;line-height:14.52px;margin:0;padding-top:10px}
+.popup__title-image{color:#fff;font-size:12px;font-style:normal;font-weight:400;height:20px;line-height:14.52px;margin:0;padding-top:10px;text-shadow:3px 1px 1px #000}
 .popup__button_invalid{background:#f32b2b;border:1px solid rgba(0,0,0,.2);box-shadow:0 0 30px 11px #d12020;color:rgb(255 250 250/89%);cursor:default;text-decoration:line-through}
 
 .popup__error_visible{color:red;display:block;font-size:12px;font-style:normal;font-weight:400;line-height:14.52px;padding:0 0 13px 36px}
