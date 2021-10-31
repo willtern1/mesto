@@ -29,7 +29,8 @@ import {
   buttonCardSunmit,
   buttonAvatarSubmit,
   buttonProfileSubmit,
-  id
+  id,
+  musicButton
 } from '../utils/variables.js';
 
 
@@ -211,3 +212,27 @@ const validatorEditProfile = new FormValidator(validitySelectorList, profileForm
 validatorEditProfile.enableValidation();
 const validatorAddCard = new FormValidator(validitySelectorList, cardForm);
 validatorAddCard.enableValidation();
+
+
+const audio = document.querySelector("#audio");
+
+
+//фоновая музыка
+console.log(audio)
+musicButton.addEventListener('click',  () => {
+if (musicButton.classList.contains('body__music-icon')) {
+  musicOn()
+} else if(musicButton.classList.contains('body__music-icon_on'))  {
+ musicOff()
+}
+})
+
+function musicOn () {
+    musicButton.classList.add('body__music-icon_on')
+    audio.volume = 0.2;
+    audio.play()
+}
+function musicOff () {
+    musicButton.classList.remove('body__music-icon_on')
+    audio.pause()
+}

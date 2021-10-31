@@ -1,0 +1,14 @@
+.body__music-icon {
+  background-image: url(../../../images/musicOff.svg);
+  width: 25px;
+  height: 15px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
+  border: 0px;
+  transition: 1s;
+  cursor: pointer;
+  position: fixed;
+  z-index: 10;
+}

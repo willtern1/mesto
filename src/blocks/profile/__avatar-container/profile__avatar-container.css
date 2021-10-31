@@ -17,7 +17,7 @@
   margin: 0;
   opacity: 0;
   transition: all 1s ease-out;
-  position: fixed;
+  position: absolute;
   margin-left: 4px;
 }
 .profile__avatar-container:hover {

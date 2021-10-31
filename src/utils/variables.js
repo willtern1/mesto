@@ -24,6 +24,7 @@ export const buttonAvatarSubmit = document.querySelector('.popup__button_type_ad
 export const buttonCardSunmit = document.querySelector('.popup__button_type_add-place');
 export const buttonProfileSubmit = document.querySelector('.popup__button_type_edit-profile');
 export  const id = [];
+export  const  musicButton = document.querySelector('.body__music-icon');
 export const validitySelectorList =({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
