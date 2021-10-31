@@ -52,6 +52,13 @@ module.exports = {
           'postcss-loader'
         ]
       },
+      {
+        test: /\.(mp3|wav|aac|flac)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'audio/[name].[hash][ext]'
+        }
+      },
     ]
   },
   plugins: [
