@@ -26,7 +26,9 @@ import {
   openUpdateAvatarPopupBtn,
   avatarPopup,
   avatarForm,
-  id
+  id,
+  musicButton,
+  audio
 } from '../utils/variables.js';
 import renderLoading from  '../utils/utils'
 
@@ -193,19 +195,14 @@ validatorEditProfile.enableValidation();
 const validatorAddCard = new FormValidator(validitySelectorList, cardForm);
 validatorAddCard.enableValidation();
 
-
-const audio = document.querySelector(".audio");
-const musicButton = document.querySelector('.body__music-icon');
-
 //фоновая музыка
 musicButton.addEventListener('click',  () => {
-  if (musicButton.classList.contains('body__music-icon')) {
-    musicButton.classList.toggle('body__music-icon_on')
-    audio.volume = 0.2;
-    audio.play()
+  if (musicButton.classList.contains('body__music-icon_on')) {
+    musicOff()
+  } else   {
+      musicOn()
   }
 })
-
 function musicOn () {
   musicButton.classList.add('body__music-icon_on')
   audio.volume = 0.2;

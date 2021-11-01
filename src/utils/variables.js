@@ -18,6 +18,8 @@ export const  openUpdateAvatarPopupBtn = document.querySelector('.profile__avata
 export const avatarPopup = document.querySelector('.popup_type_add-avatar');
 export const  avatarForm = document.querySelector('.popup__form_type_add-avatar')
 export  const id = [];
+export const audio = document.querySelector(".audio");
+export const musicButton = document.querySelector('.body__music-icon');
 export const validitySelectorList =({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
