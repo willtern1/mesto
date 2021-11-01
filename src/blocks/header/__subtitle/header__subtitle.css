@@ -5,6 +5,10 @@
   color: #ffa900;
   text-shadow: 0 0 3vw #865900;
   cursor: pointer;
+  animation: flux 2s linear infinite;
+  -moz-animation: flux 2s linear infinite;
+  -webkit-animation: flux 2s linear infinite;
+  -o-animation: flux 2s linear infinite;
 }
 
 @keyframes flux {
@@ -16,10 +20,4 @@
     color: #865900;
     text-shadow: 0 0 0.5vw #865900, 0 0 1.5vw #865900, 0 0 5vw #865900, 0 0 5vw #865900, 0 0 0.2vw #865900, 0.5vw 0.5vw 0.1vw #000000;
   }
-}
-.header__subtitle {
-  animation: flux 2s linear infinite;
-  -moz-animation: flux 2s linear infinite;
-  -webkit-animation: flux 2s linear infinite;
-  -o-animation: flux 2s linear infinite;
 }
