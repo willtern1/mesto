@@ -26,12 +26,10 @@ import {
   openUpdateAvatarPopupBtn,
   avatarPopup,
   avatarForm,
-  buttonCardSunmit,
-  buttonAvatarSubmit,
-  buttonProfileSubmit,
   id,
   musicButton
 } from '../utils/variables.js';
+import renderLoading from  '../utils/utils'
 
 
 // экза апи
@@ -42,9 +40,14 @@ const api = new Api ({
     "content-type": "application/json"
   }
 })
-// вставка в размету данных с Апи
-api.getUserInfo().then((data) => {
-  userInfo.setUserInfo(data)
+
+Promise.all([api.getUserInfo(), api.getCardsInfo()])
+  .then(([user, cards]) => {
+    id.textContent = user._id;
+    userInfo.setUserInfo(user);
+    cardList.renderItems(cards)
+  }).catch((err) => {
+    alert(`Не удалось загрезить данные, ошибка : ${err.status}`)
 })
 
 //экземпляр класса секшен
@@ -53,13 +56,6 @@ const cardList = new Section({
     cardList.addItem(createCard(item));
   }
 }, cardsSection);
-
-//отрисовка карт с сервера
-api.getCardsInfo().then((data) => {
-   cardList.renderItems(data)
-}).catch((err) => {
-  alert(`Ошибка загрузки карточек : ${err.status}`)
-})
 
 // экземпляр  попапа удаления карточки
 const  deleteCardPopup = new PopupConfirmDelete(popupDeleteCard)
@@ -83,7 +79,6 @@ function  createCard (item) {
       api.putLikeCard(card.getIdCard()).then((res) => {
         card.likeOn()
         card.likesCounterUpdate(res.likes.length)
-        console.log(res.likes.length)
       }).catch((err) => {
         alert(`ОшибОчка: ${err.status}`)
       })
@@ -113,24 +108,11 @@ const  userInfo = new UserInfo({
   avatar: profileAvatar,
   id: id
 })
-//Функция изменения кнопки при сабмите
-function renderLoading(loading) {
-if (loading === true) {
-  buttonProfileSubmit.textContent = 'Сохранение...'
-  buttonCardSunmit.textContent = 'Создание...'
-  buttonAvatarSubmit.textContent = 'Сохранение...'
-}else {
-  buttonProfileSubmit.textContent = 'Сохранить'
-  buttonCardSunmit.textContent = 'Создать'
-  buttonAvatarSubmit.textContent = 'Сохранить'
-}
-}
-
 
 // экземпляр класса с формой профиля  с сабмитом + саб на серв
 const  popupProfile = new PopupWithForm(profilePopup,  {
   callbackFormSubmit: (data)=> {
-    renderLoading(true)
+    renderLoading(true, profilePopup)
       api.pathUserData(data).then((res) => {
         userInfo.setUserInfo(res)
         popupProfile.close()
@@ -138,7 +120,7 @@ const  popupProfile = new PopupWithForm(profilePopup,  {
         popupProfile.open()
         alert(`Ошибка при отправке данных на сервер ${err.status}`)
       }).finally(() => {
-        renderLoading(false)
+        renderLoading(false, profilePopup)
       })
   }
 })
@@ -155,14 +137,14 @@ const openEditProfilePopup = () => {
 //Сабмит новой карточки по попапу + отправка карточки на серв
 const cardPopupForm = new PopupWithForm(cardPopup, {
   callbackFormSubmit: (data) => {
-      renderLoading(true)
+      renderLoading(true, cardPopup)
       api.postCardData(data).then((res) => {
         cardList.addItemPrepend(createCard(res))
         cardPopupForm.close()
       }).catch((err) => {
         alert(`А не добавить карточку, ошибка :${err.status}`)
       }).finally(() => {
-        renderLoading(false)
+        renderLoading(false, cardPopup)
       })
       }
     })
@@ -170,15 +152,14 @@ const cardPopupForm = new PopupWithForm(cardPopup, {
 //Сабмит нового аватара на страницу и на серв
 const  avatarPopupForm= new PopupWithForm(avatarPopup, {
   callbackFormSubmit: (data) => {
-    console.log(data)
-    renderLoading(true)
+    renderLoading(true, avatarPopup)
     api.patchAvatar(data).then((res) => {
         userInfo.setUserInfo(res)
         avatarPopupForm.close()
     }).catch((err) => {
       alert(`Не удалось обновить аватар , ошибка : ${err.status}`)
     }).finally(()=> {
-      renderLoading(false)
+      renderLoading(false, avatarPopup)
     })
   }
 })
@@ -218,7 +199,6 @@ const audio = document.querySelector("#audio");
 
 
 //фоновая музыка
-console.log(audio)
 musicButton.addEventListener('click',  () => {
 if (musicButton.classList.contains('body__music-icon')) {
   musicOn()
