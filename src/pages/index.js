@@ -26,8 +26,7 @@ import {
   openUpdateAvatarPopupBtn,
   avatarPopup,
   avatarForm,
-  id,
-  musicButton
+  id
 } from '../utils/variables.js';
 import renderLoading from  '../utils/utils'
 
@@ -195,24 +194,24 @@ const validatorAddCard = new FormValidator(validitySelectorList, cardForm);
 validatorAddCard.enableValidation();
 
 
-const audio = document.querySelector("#audio");
-
+const audio = document.querySelector(".audio");
+const musicButton = document.querySelector('.body__music-icon');
 
 //фоновая музыка
 musicButton.addEventListener('click',  () => {
-if (musicButton.classList.contains('body__music-icon')) {
-  musicOn()
-} else if(musicButton.classList.contains('body__music-icon_on'))  {
- musicOff()
-}
+  if (musicButton.classList.contains('body__music-icon')) {
+    musicButton.classList.toggle('body__music-icon_on')
+    audio.volume = 0.2;
+    audio.play()
+  }
 })
 
 function musicOn () {
-    musicButton.classList.add('body__music-icon_on')
-    audio.volume = 0.2;
-    audio.play()
+  musicButton.classList.add('body__music-icon_on')
+  audio.volume = 0.2;
+  audio.play()
 }
 function musicOff () {
-    musicButton.classList.remove('body__music-icon_on')
-    audio.pause()
+  musicButton.classList.remove('body__music-icon_on')
+  audio.pause()
 }
