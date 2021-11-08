@@ -13,6 +13,7 @@
 * OOП
 * CSS Flexbox, Grid
 * API
+* LiveValidation для форм попапов
 
 **Figma**
 
